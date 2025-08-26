@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- Configuración básica del documento -->
+    <meta charset="UTF-8"> <!-- Codificación de caracteres UTF-8 para soporte completo de texto en español -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Configuración responsiva para dispositivos móviles -->
+    <title>Últimas noticias</title> <!-- Título que aparece en la pestaña del navegador -->
+    <link rel="stylesheet" href="styles.css"> <!-- Enlace al archivo de estilos CSS externo -->
+    <!-- Enlace a iconos de Bootstrap para uso en el sitio -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+    <!-- BANNER DE NOTICIAS DE ÚLTIMA HORA -->
+    <!-- Banner superior fijo que muestra alertas o anuncios importantes -->
+    <div class="breaking-banner">
+        <p>🚨 ÚLTIMA HORA: "Nuestro portal de noticias se encuentra en proceso de desarrollo. Próximamente será puesto a
+            disposición del público con el firme compromiso de ofrecer información veraz, oportuna y confiable,
+            reafirmando nuestra responsabilidad con la transparencia y el servicio a nuestros usuarios."</p>
+    </div>
+
+    <!-- HEADER PRINCIPAL DEL SITIO -->
+    <header class="header">
+        <!-- Sección superior del header con información en vivo -->
+        <div class="header-top">
+            <div class="header-top-content">
+                <!-- Indicador de transmisión en vivo -->
+                <div class="live-indicator">
+                    <div class="live-dot"></div> <!-- Punto rojo animado que indica transmisión en vivo -->
+                    EN VIVO
+                </div>
+                <!-- Información contextual: ubicación, clima y hora -->
+                <div class="weather-info">
+                    <span>📍 Cúcuta, Colombia</span> <!-- Ubicación geográfica del portal -->
+                    <span>🌤️ 24°C</span> <!-- Temperatura actual -->
+                    <span>🕐 <span id="current-time">21:45</span></span>
+                    <!-- Hora actual (se actualiza con JavaScript) -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección principal del header con logo y herramientas -->
+        <div class="header-main">
+            <div class="header-content">
+                <!-- Logo del portal de noticias -->
+                <a href="#" class="logo">NDA</a>
+
+                <!-- Área derecha del header con búsqueda y menú de usuario -->
+                <div class="header-right">
+                    <!-- Contenedor de búsqueda -->
+                    <div class="search-container">
+                        <span class="search-icon">🔍</span> <!-- Icono de búsqueda -->
+                        <input type="text" class="search-box" placeholder="Buscar noticias, temas, personas...">
+                    </div>
+
+                    <!-- Menú de usuario con opciones de cuenta e idioma -->
+                    <div class="user-menu">
+                        <a href="#">Suscribirse</a> <!-- Enlace para suscripción -->
+                        <a href="#">Iniciar sesión</a> <!-- Enlace para login -->
+                        <a href="#">🌐 ES</a> <!-- Selector de idioma -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- NAVEGACIÓN PRINCIPAL -->
+    <!-- Barra de navegación con las categorías principales de noticias -->
+    <nav class="nav">
+        <div class="nav-content">
+            <ul class="nav-menu">
+                <!-- Cada elemento del menú representa una categoría de noticias -->
+                <li><a href="#" class="active">Inicio</a></li> <!-- Página principal (activa por defecto) -->
+                <li><a href="#" onclick="showCategory('mundo')">Mundo</a></li> <!-- Noticias internacionales -->
+                <li><a href="#" onclick="showCategory('politica')">Política</a></li> <!-- Noticias políticas -->
+                <li><a href="#" onclick="showCategory('economia')">Economía</a></li> <!-- Noticias económicas -->
+                <li><a href="#" onclick="showCategory('deportes')">Deportes</a></li> <!-- Noticias deportivas -->
+                <li><a href="#" onclick="showCategory('tecnologia')">Tech</a></li> <!-- Noticias de tecnología -->
+                <li><a href="#" onclick="showCategory('salud')">Salud</a></li> <!-- Noticias de salud -->
+                <li><a href="#" onclick="showCategory('opinion')">Opinión</a></li> <!-- Artículos de opinión -->
+                <li><a href="#" onclick="showCategory('videos')">Videos</a></li> <!-- Contenido multimedia -->
+            </ul>
+        </div>
+    </nav>
+
+    <!-- CONTENEDOR PRINCIPAL DEL SITIO -->
+    <!-- Layout principal que contiene el contenido principal y la barra lateral -->
+    <div class="container">
+        <!-- CONTENIDO PRINCIPAL -->
+        <main>
+            <!-- SECCIÓN HERO (Noticia Principal) -->
+            <!-- Área destacada para la noticia más importante del día -->
+            <section class="hero-section">
+                <!-- El contenido se insertará aquí dinámicamente mediante JavaScript -->
+                <!-- Esta sección típicamente contiene:
+                     - Imagen de portada grande
+                     - Titular principal
+                     - Resumen de la noticia
+                     - Metadatos (fecha, autor, categoría) -->
+            </section>
+
+            <!-- SECCIÓN DE NOTICIAS PRINCIPALES -->
+            <!-- Grid de noticias importantes organizadas por relevancia -->
+            <section class="top-stories">
+                <!-- Header de la sección con título y línea decorativa -->
+                <div class="section-header">
+                    <h2 class="section-title">Principales Noticias</h2>
+                    <div class="section-line"></div> <!-- Línea decorativa bajo el título -->
+                </div>
+
+                <!-- Grid contenedor de las tarjetas de noticias -->
+                <div class="stories-grid">
+                    <!-- El contenido se insertará aquí dinámicamente mediante JavaScript -->
+                    <!-- Cada noticia incluirá:
+                         - Imagen thumbnail
+                         - Titular
+                         - Resumen breve
+                         - Metadatos (fecha, categoría) -->
+                </div>
+            </section>
+        </main>
+
+        <!-- BARRA LATERAL -->
+        <!-- Contenido secundario y widgets complementarios -->
+        <aside class="sidebar">
+            <!-- WIDGET DE ACTUALIZACIONES EN VIVO -->
+            <!-- Feed en tiempo real de noticias de última hora -->
+            <div class="sidebar-widget live-updates">
+                <div class="widget-header">
+                    <span class="widget-header-icon">🔴</span> <!-- Icono indicador de contenido en vivo -->
+                    <h3 class="widget-title">Actualizaciones en Vivo</h3>
+                </div>
+                <!-- El contenido se insertará aquí dinámicamente mediante JavaScript -->
+                <!-- Muestra: timestamps, títulos breves, enlaces a noticias completas -->
+            </div>
+
+            <!-- WIDGET DE TENDENCIAS -->
+            <!-- Lista de noticias más populares o trending -->
+            <div class="sidebar-widget">
+                <div class="widget-header">
+                    <span class="widget-header-icon">📈</span> <!-- Icono de tendencia/popularidad -->
+                    <h3 class="widget-title">Tendencias</h3>
+                </div>
+                <ul class="trending-list">
+                    <!-- El contenido se insertará aquí dinámicamente mediante JavaScript -->
+                    <!-- Lista ordenada de noticias por popularidad, engagement o views -->
+                </ul>
+            </div>
+
+            <!-- WIDGET DE SUSCRIPCIÓN AL NEWSLETTER -->
+            <!-- Formulario para capturar emails de suscriptores -->
+            <div class="sidebar-widget">
+                <div class="widget-header">
+                    <span class="widget-header-icon">📧</span> <!-- Icono de email/newsletter -->
+                    <h3 class="widget-title">Boletín CNN</h3>
+                </div>
+
+                <!-- Descripción del beneficio de suscribirse -->
+                <p class="newsletter-description">
+                    Recibe las noticias más importantes directo en tu email
+                </p>
+
+                <!-- Grupo de entrada para email y botón de suscripción -->
+                <div class="newsletter-input-group">
+                    <input type="email" placeholder="tu@email.com" class="newsletter-input">
+                    <button onclick="subscribeNewsletter()" class="newsletter-button">
+                        Suscribirse
+                    </button>
+                </div>
+
+                <!-- Aviso legal sobre términos y condiciones -->
+                <div class="newsletter-terms">
+                    Al suscribirte aceptas nuestros términos y condiciones
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- SECCIÓN DE VIDEOS -->
+    <!-- Área dedicada a contenido multimedia destacado -->
+    <section class="video-section">
+        <div class="video-container">
+            <!-- Header de la sección de videos -->
+            <div class="section-header">
+                <h2 class="section-title">Videos Destacados</h2>
+                <div class="section-line"></div> <!-- Línea decorativa -->
+            </div>
+
+            <!-- Grid de videos destacados -->
+            <div class="video-grid">
+                <!-- El contenido se insertará aquí dinámicamente mediante JavaScript -->
+                <!-- Cada video incluirá:
+                     - Thumbnail con botón de play
+                     - Título del video
+                     - Duración
+                     - Descripción breve -->
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER DEL SITIO -->
+    <!-- Pie de página con enlaces, información legal y redes sociales -->
+    <footer class="footer">
+        <!-- Contenido principal del footer organizado en columnas -->
+        <div class="footer-content">
+            <!-- Columna 1: Logo, descripción y redes sociales -->
+            <div class="footer-section">
+                <div class="footer-logo">NDA</div> <!-- Logo del footer -->
+                <p class="footer-description">
+                    La red de noticias más confiable del mundo, comprometida con la verdad y la excelencia periodística.
+                </p>
+                <!-- Iconos de redes sociales -->
+                <div class="footer-social">
+                    
+                    <a href="#" class="social-icon" aria-label="facebook">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+                    <!-- Twitter X -->
+                    <a href="#" class="social-icon" aria-label="Twitter">
+                        <i class="bi bi-twitter-x"></i>
+                    </a>
+
+                     <a href="#" class="social-icon" aria-label="instagram">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+                    <!-- YouTube -->
+                     <a href="#" class="social-icon" aria-label="youtube">
+                        <i class="bi bi-youtube"></i>
+                    </a>
+                    
+                </div>
+            </div>
+
+            <!-- Columna 2: Enlaces de categorías de noticias -->
+            <div class="footer-section">
+                <h3>Noticias</h3>
+                <ul>
+                    <li><a href="#">Mundo</a></li>
+                    <li><a href="#">Política</a></li>
+                    <li><a href="#">Economía</a></li>
+                    <li><a href="#">Deportes</a></li>
+                    <li><a href="#">Tecnología</a></li>
+                    <li><a href="#">Salud</a></li>
+                    <li><a href="#">Entretenimiento</a></li>
+                </ul>
+            </div>
+
+            <!-- Columna 3: Enlaces a programas especiales -->
+            <div class="footer-section">
+                <h3>Programas</h3>
+                <ul>
+                    <li><a href="#">NDA en Vivo</a></li>
+                    <li><a href="#">Conclusiones</a></li>
+                    <li><a href="#">Panorama Mundial</a></li>
+                    <li><a href="#">Encuentro</a></li>
+                    <li><a href="#">Cala</a></li>
+                    <li><a href="#">Café NDA</a></li>
+                </ul>
+            </div>
+
+            <!-- Columna 4: Servicios adicionales de CNN -->
+            <div class="footer-section">
+                <h3>Más NDA</h3>
+                <ul>
+                    <li><a href="#">NDA Radio</a></li>
+                    <li><a href="#">NDA Underscored</a></li>
+                    <li><a href="#">Newsletters</a></li>
+                    <li><a href="#">Podcasts</a></li>
+                    <li><a href="#">Aplicación móvil</a></li>
+                    <li><a href="#">TV en vivo</a></li>
+                </ul>
+            </div>
+
+            <!-- Columna 5: Información corporativa y legal -->
+            <div class="footer-section">
+                <h3>Información</h3>
+                <ul>
+                    <li><a href="#">Acerca de NDA</a></li>
+                    <li><a href="#">Carreras</a></li>
+                    <li><a href="#">Publicidad</a></li>
+                    <li><a href="#">Contacto</a></li>
+                    <li><a href="#">Términos de uso</a></li>
+                    <li><a href="#">Política de privacidad</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Sección inferior del footer con información legal -->
+        <div class="footer-bottom">
+            <p>&copy; 2025 Cable News Network. Turner Broadcasting System, Inc. Todos los derechos reservados.</p>
+            <p class="footer-bottom-text">NDA y el logotipo de NDA son marcas registradas de Cable News Network, Inc.
+            </p>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS EXTERNOS -->
+    <!-- Archivos JavaScript que proporcionan funcionalidad dinámica al sitio -->
+    <script src="database.js"></script> <!-- Base de datos de noticias y contenido -->
+    <script src="script.js"></script> <!-- Lógica principal de la aplicación -->
+</body>
+
+</html>
