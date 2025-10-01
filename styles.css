@@ -6,15 +6,20 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Incluye padding y border en el width total */
+    box-sizing: border-box;
+    /* Incluye padding y border en el width total */
 }
 
 /* Configuración base del documento */
 body {
-    font-family: 'Helvetica Neue', Arial, sans-serif; /* Fuente moderna y legible */
-    line-height: 1.4; /* Espaciado entre líneas para mejor legibilidad */
-    color: #262626; /* Color de texto principal (gris oscuro) */
-    background: #ffffff; /* Fondo blanco limpio */
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    /* Fuente moderna y legible */
+    line-height: 1.4;
+    /* Espaciado entre líneas para mejor legibilidad */
+    color: #262626;
+    /* Color de texto principal (gris oscuro) */
+    background: #ffffff;
+    /* Fondo blanco limpio */
 }
 
 /* ========================================
@@ -23,28 +28,40 @@ body {
 
 /* Contenedor del banner superior con noticias urgentes */
 .breaking-banner {
-    background: #cc0000; /* Rojo intenso para captar atención */
-    color: white; /* Texto blanco para contraste */
-    padding: 0.5rem 0; /* Espaciado vertical mínimo */
-    font-weight: 600; /* Texto semi-bold para énfasis */
-    font-size: 0.9rem; /* Tamaño de fuente compacto */
-    overflow: hidden; /* Oculta el texto que sale del contenedor */
-    white-space: nowrap; /* Evita que el texto se divida en líneas */
+    background: #cc0000;
+    /* Rojo intenso para captar atención */
+    color: white;
+    /* Texto blanco para contraste */
+    padding: 0.5rem 0;
+    /* Espaciado vertical mínimo */
+    font-weight: 600;
+    /* Texto semi-bold para énfasis */
+    font-size: 0.9rem;
+    /* Tamaño de fuente compacto */
+    overflow: hidden;
+    /* Oculta el texto que sale del contenedor */
+    white-space: nowrap;
+    /* Evita que el texto se divida en líneas */
 }
 
 /* Texto del banner con animación de desplazamiento */
 .breaking-banner p {
-    display: inline-block; /* Permite animación de transform */
-    animation: marquee 40s linear infinite; /* Animación de marquesina continua */
+    display: inline-block;
+    /* Permite animación de transform */
+    animation: marquee 40s linear infinite;
+    /* Animación de marquesina continua */
 }
 
 /* Animación de desplazamiento horizontal (marquesina) */
 @keyframes marquee {
     from {
-        transform: translateX(100vw); /* Inicia desde el borde derecho */
+        transform: translateX(100vw);
+        /* Inicia desde el borde derecho */
     }
+
     to {
-        transform: translateX(-100%); /* Termina completamente fuera del borde izquierdo */
+        transform: translateX(-100%);
+        /* Termina completamente fuera del borde izquierdo */
     }
 }
 
@@ -54,146 +71,225 @@ body {
 
 /* Contenedor principal del header */
 .header {
-    background: #000000; /* Fondo negro sólido */
-    border-bottom: 3px solid #cc0000; /* Borde inferior rojo como acento */
+    background: #000000;
+    /* Fondo negro sólido */
+    border-bottom: 3px solid #cc0000;
+    /* Borde inferior rojo como acento */
 }
 
 /* Sección superior del header con información contextual */
 .header-top {
-    background: #1a1a1a; /* Gris muy oscuro, ligeramente más claro que el header */
-    padding: 0.5rem 0; /* Espaciado vertical mínimo */
-    border-bottom: 1px solid #333; /* Línea separadora sutil */
+    background: #1a1a1a;
+    /* Gris muy oscuro, ligeramente más claro que el header */
+    padding: 0.5rem 0;
+    /* Espaciado vertical mínimo */
+    border-bottom: 1px solid #333;
+    /* Línea separadora sutil */
 }
 
 /* Contenedor del contenido del header superior */
 .header-top-content {
-    max-width: 1280px; /* Ancho máximo para mantener diseño centrado */
-    margin: 0 auto; /* Centrado horizontal */
-    padding: 0 2rem; /* Espaciado lateral */
-    display: flex; /* Layout flexbox */
-    justify-content: space-between; /* Distribuye elementos en extremos */
-    align-items: center; /* Alineación vertical centrada */
-    font-size: 0.8rem; /* Texto pequeño para información secundaria */
+    max-width: 1280px;
+    /* Ancho máximo para mantener diseño centrado */
+    margin: 0 auto;
+    /* Centrado horizontal */
+    padding: 0 2rem;
+    /* Espaciado lateral */
+    display: flex;
+    /* Layout flexbox */
+    justify-content: space-between;
+    /* Distribuye elementos en extremos */
+    align-items: center;
+    /* Alineación vertical centrada */
+    font-size: 0.8rem;
+    /* Texto pequeño para información secundaria */
 }
 
 /* Indicador de transmisión en vivo */
 .live-indicator {
-    background: #cc0000; /* Fondo rojo para destacar */
-    color: white; /* Texto blanco */
-    padding: 0.3rem 0.8rem; /* Espaciado interno compacto */
-    border-radius: 15px; /* Bordes muy redondeados (píldora) */
-    font-weight: 600; /* Texto semi-bold */
-    font-size: 0.75rem; /* Tamaño compacto */
-    display: flex; /* Layout flexbox para alinear elementos */
-    align-items: center; /* Alineación vertical */
-    gap: 0.5rem; /* Espacio entre punto y texto */
+    background: #cc0000;
+    /* Fondo rojo para destacar */
+    color: white;
+    /* Texto blanco */
+    padding: 0.3rem 0.8rem;
+    /* Espaciado interno compacto */
+    border-radius: 15px;
+    /* Bordes muy redondeados (píldora) */
+    font-weight: 600;
+    /* Texto semi-bold */
+    font-size: 0.75rem;
+    /* Tamaño compacto */
+    display: flex;
+    /* Layout flexbox para alinear elementos */
+    align-items: center;
+    /* Alineación vertical */
+    gap: 0.5rem;
+    /* Espacio entre punto y texto */
 }
 
 /* Punto animado del indicador en vivo */
 .live-dot {
     width: 8px;
     height: 8px;
-    background: white; /* Punto blanco */
-    border-radius: 50%; /* Forma circular perfecta */
-    animation: blink 1s infinite; /* Parpadeo continuo */
+    background: white;
+    /* Punto blanco */
+    border-radius: 50%;
+    /* Forma circular perfecta */
+    animation: blink 1s infinite;
+    /* Parpadeo continuo */
 }
 
 /* Animación de parpadeo para el punto en vivo */
 @keyframes blink {
-    0%, 50% { opacity: 1; } /* Visible */
-    51%, 100% { opacity: 0.3; } /* Semi-transparente */
+
+    0%,
+    50% {
+        opacity: 1;
+    }
+
+    /* Visible */
+    51%,
+    100% {
+        opacity: 0.3;
+    }
+
+    /* Semi-transparente */
 }
 
 /* Información de clima y ubicación */
 .weather-info {
-    color: #ccc; /* Gris claro */
-    display: flex; /* Layout flexbox */
-    align-items: center; /* Alineación vertical */
-    gap: 1rem; /* Espacio entre elementos */
+    color: #ccc;
+    /* Gris claro */
+    display: flex;
+    /* Layout flexbox */
+    align-items: center;
+    /* Alineación vertical */
+    gap: 1rem;
+    /* Espacio entre elementos */
 }
 
 /* Sección principal del header con logo y herramientas */
 .header-main {
-    padding: 1rem 0; /* Espaciado vertical generoso */
+    padding: 1rem 0;
+    /* Espaciado vertical generoso */
 }
 
 /* Contenedor del contenido principal del header */
 .header-content {
-    max-width: 1280px; /* Ancho máximo consistente */
-    margin: 0 auto; /* Centrado horizontal */
-    display: flex; /* Layout flexbox */
-    justify-content: space-between; /* Distribuye logo y herramientas */
-    align-items: center; /* Alineación vertical centrada */
-    padding: 0 2rem; /* Espaciado lateral */
+    max-width: 1280px;
+    /* Ancho máximo consistente */
+    margin: 0 auto;
+    /* Centrado horizontal */
+    display: flex;
+    /* Layout flexbox */
+    justify-content: space-between;
+    /* Distribuye logo y herramientas */
+    align-items: center;
+    /* Alineación vertical centrada */
+    padding: 0 2rem;
+    /* Espaciado lateral */
 }
 
 /* Logo del portal de noticias */
 .logo {
-    font-size: 2.5rem; /* Tamaño grande y prominente */
-    font-weight: 900; /* Peso extra-bold */
-    color: #cc0000; /* Color rojo de marca */
-    text-decoration: none; /* Sin subrayado */
-    letter-spacing: 2px; /* Espaciado entre letras para elegancia */
+    font-size: 2.5rem;
+    /* Tamaño grande y prominente */
+    font-weight: 900;
+    /* Peso extra-bold */
+    color: #cc0000;
+    /* Color rojo de marca */
+    text-decoration: none;
+    /* Sin subrayado */
+    letter-spacing: 2px;
+    /* Espaciado entre letras para elegancia */
 }
 
 /* Contenedor de herramientas del lado derecho */
 .header-right {
-    display: flex; /* Layout flexbox */
-    align-items: center; /* Alineación vertical */
-    gap: 2rem; /* Espacio generoso entre elementos */
+    display: flex;
+    /* Layout flexbox */
+    align-items: center;
+    /* Alineación vertical */
+    gap: 2rem;
+    /* Espacio generoso entre elementos */
 }
 
 /* Contenedor de la funcionalidad de búsqueda */
 .search-container {
-    position: relative; /* Para posicionamiento absoluto del ícono */
+    position: relative;
+    /* Para posicionamiento absoluto del ícono */
 }
 
 /* Campo de entrada para búsquedas */
 .search-box {
-    background: #f8f8f8; /* Fondo gris muy claro */
-    border: 2px solid #e0e0e0; /* Borde gris claro */
-    border-radius: 25px; /* Bordes muy redondeados */
-    padding: 0.7rem 1.2rem 0.7rem 2.5rem; /* Espaciado con lugar para ícono */
-    width: 350px; /* Ancho fijo generoso */
-    font-size: 0.9rem; /* Tamaño de fuente cómodo */
-    transition: all 0.3s; /* Transición suave para estados */
+    background: #f8f8f8;
+    /* Fondo gris muy claro */
+    border: 2px solid #e0e0e0;
+    /* Borde gris claro */
+    border-radius: 25px;
+    /* Bordes muy redondeados */
+    padding: 0.7rem 1.2rem 0.7rem 2.5rem;
+    /* Espaciado con lugar para ícono */
+    width: 350px;
+    /* Ancho fijo generoso */
+    font-size: 0.9rem;
+    /* Tamaño de fuente cómodo */
+    transition: all 0.3s;
+    /* Transición suave para estados */
 }
 
 /* Estado de foco del campo de búsqueda */
 .search-box:focus {
-    outline: none; /* Elimina outline por defecto */
-    border-color: #cc0000; /* Borde rojo al enfocar */
-    background: white; /* Fondo blanco puro para contraste */
+    outline: none;
+    /* Elimina outline por defecto */
+    border-color: #cc0000;
+    /* Borde rojo al enfocar */
+    background: white;
+    /* Fondo blanco puro para contraste */
 }
 
 /* Ícono de búsqueda posicionado sobre el campo */
 .search-icon {
-    position: absolute; /* Posicionamiento absoluto */
-    left: 12px; /* Posición desde la izquierda */
-    top: 50%; /* Centrado verticalmente */
-    transform: translateY(-50%); /* Ajuste fino de centrado */
-    color: #666; /* Color gris medio */
+    position: absolute;
+    /* Posicionamiento absoluto */
+    left: 12px;
+    /* Posición desde la izquierda */
+    top: 50%;
+    /* Centrado verticalmente */
+    transform: translateY(-50%);
+    /* Ajuste fino de centrado */
+    color: #666;
+    /* Color gris medio */
 }
 
 /* Menú de usuario con enlaces de navegación */
 .user-menu {
-    display: flex; /* Layout flexbox */
-    align-items: center; /* Alineación vertical */
-    gap: 1.5rem; /* Espacio entre enlaces */
+    display: flex;
+    /* Layout flexbox */
+    align-items: center;
+    /* Alineación vertical */
+    gap: 1.5rem;
+    /* Espacio entre enlaces */
 }
 
 /* Enlaces del menú de usuario */
 .user-menu a {
-    color: #ccc; /* Gris claro por defecto */
-    text-decoration: none; /* Sin subrayado */
-    font-size: 0.9rem; /* Tamaño compacto */
-    font-weight: 500; /* Peso medio */
-    transition: color 0.3s; /* Transición suave de color */
+    color: #ccc;
+    /* Gris claro por defecto */
+    text-decoration: none;
+    /* Sin subrayado */
+    font-size: 0.9rem;
+    /* Tamaño compacto */
+    font-weight: 500;
+    /* Peso medio */
+    transition: color 0.3s;
+    /* Transición suave de color */
 }
 
 /* Estado hover de los enlaces del menú */
 .user-menu a:hover {
-    color: #cc0000; /* Cambio a rojo en hover */
+    color: #cc0000;
+    /* Cambio a rojo en hover */
 }
 
 /* ========================================
@@ -202,53 +298,79 @@ body {
 
 /* Contenedor de la barra de navegación */
 .nav {
-    background: #000000; /* Fondo negro consistente con header */
-    border-top: 1px solid #333; /* Línea separadora sutil */
-    padding: 0; /* Sin espaciado para maximizar espacio */
-    position: sticky; /* Se mantiene visible al hacer scroll */
-    top: 0; /* Pegado al top cuando es sticky */
-    z-index: 100; /* Alto índice z para estar sobre otros elementos */
+    background: #000000;
+    /* Fondo negro consistente con header */
+    border-top: 1px solid #333;
+    /* Línea separadora sutil */
+    padding: 0;
+    /* Sin espaciado para maximizar espacio */
+    position: sticky;
+    /* Se mantiene visible al hacer scroll */
+    top: 0;
+    /* Pegado al top cuando es sticky */
+    z-index: 100;
+    /* Alto índice z para estar sobre otros elementos */
 }
 
 /* Contenedor del contenido de navegación */
 .nav-content {
-    max-width: 1280px; /* Ancho máximo consistente */
-    margin: 0 auto; /* Centrado horizontal */
-    padding: 0 2rem; /* Espaciado lateral */
+    max-width: 1280px;
+    /* Ancho máximo consistente */
+    margin: 0 auto;
+    /* Centrado horizontal */
+    padding: 0 2rem;
+    /* Espaciado lateral */
 }
 
 /* Lista de navegación principal */
 .nav-menu {
-    display: flex; /* Layout flexbox horizontal */
-    list-style: none; /* Sin bullets de lista */
-    gap: 0; /* Sin espacios entre elementos para diseño continuo */
+    display: flex;
+    /* Layout flexbox horizontal */
+    list-style: none;
+    /* Sin bullets de lista */
+    gap: 0;
+    /* Sin espacios entre elementos para diseño continuo */
 }
 
 /* Elementos individuales del menú */
 .nav-menu li {
-    position: relative; /* Para posibles elementos posicionados absolutamente */
+    position: relative;
+    /* Para posibles elementos posicionados absolutamente */
 }
 
 /* Enlaces de navegación por categoría */
 .nav-menu a {
-    display: block; /* Ocupa toda el área clickeable */
-    color: #ccc; /* Gris claro por defecto */
-    text-decoration: none; /* Sin subrayado */
-    padding: 1rem 1.5rem; /* Espaciado generoso para área clickeable */
-    font-weight: 500; /* Peso medio */
-    font-size: 0.9rem; /* Tamaño compacto */
-    text-transform: uppercase; /* Texto en mayúsculas */
-    letter-spacing: 1px; /* Espaciado entre letras */
-    transition: all 0.3s; /* Transición suave para todos los cambios */
-    border-bottom: 3px solid transparent; /* Borde inferior transparente por defecto */
+    display: block;
+    /* Ocupa toda el área clickeable */
+    color: #ccc;
+    /* Gris claro por defecto */
+    text-decoration: none;
+    /* Sin subrayado */
+    padding: 1rem 1.5rem;
+    /* Espaciado generoso para área clickeable */
+    font-weight: 500;
+    /* Peso medio */
+    font-size: 0.9rem;
+    /* Tamaño compacto */
+    text-transform: uppercase;
+    /* Texto en mayúsculas */
+    letter-spacing: 1px;
+    /* Espaciado entre letras */
+    transition: all 0.3s;
+    /* Transición suave para todos los cambios */
+    border-bottom: 3px solid transparent;
+    /* Borde inferior transparente por defecto */
 }
 
 /* Estados hover y activo de navegación */
 .nav-menu a:hover,
 .nav-menu a.active {
-    color: white; /* Texto blanco para destacar */
-    background: #1a1a1a; /* Fondo ligeramente más claro */
-    border-bottom-color: #cc0000; /* Borde inferior rojo como indicador */
+    color: white;
+    /* Texto blanco para destacar */
+    background: #1a1a1a;
+    /* Fondo ligeramente más claro */
+    border-bottom-color: #cc0000;
+    /* Borde inferior rojo como indicador */
 }
 
 /* ========================================
@@ -257,13 +379,20 @@ body {
 
 /* Contenedor principal con layout de dos columnas */
 .container {
-    max-width: 1280px; /* Ancho máximo consistente */
-    margin: 0 auto; /* Centrado horizontal */
-    padding: 0 2rem; /* Espaciado lateral */
-    display: grid; /* Layout CSS Grid */
-    grid-template-columns: 2fr 1fr; /* Contenido principal (2/3) y sidebar (1/3) */
-    gap: 3rem; /* Espacio generoso entre columnas */
-    margin-top: 2rem; /* Separación del header */
+    max-width: 1280px;
+    /* Ancho máximo consistente */
+    margin: 0 auto;
+    /* Centrado horizontal */
+    padding: 0 2rem;
+    /* Espaciado lateral */
+    display: grid;
+    /* Layout CSS Grid */
+    grid-template-columns: 2fr 1fr;
+    /* Contenido principal (2/3) y sidebar (1/3) */
+    gap: 3rem;
+    /* Espacio generoso entre columnas */
+    margin-top: 2rem;
+    /* Separación del header */
 }
 
 /* ========================================
@@ -272,83 +401,126 @@ body {
 
 /* Contenedor de la noticia destacada */
 .hero-section {
-    margin-bottom: 3rem; /* Separación de la siguiente sección */
+    margin-bottom: 3rem;
+    /* Separación de la siguiente sección */
 }
 
 /* Tarjeta de la noticia hero */
 .hero-story {
-    position: relative; /* Para posicionamiento de overlay */
-    height: 500px; /* Altura fija impactante */
-    border-radius: 10px; /* Bordes redondeados modernos */
-    overflow: hidden; /* Oculta contenido que sobresale */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3); /* Sombra dramática */
+    position: relative;
+    /* Para posicionamiento de overlay */
+    height: 500px;
+    /* Altura fija impactante */
+    border-radius: 10px;
+    /* Bordes redondeados modernos */
+    overflow: hidden;
+    /* Oculta contenido que sobresale */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    /* Sombra dramática */
 }
 
 /* Imagen de fondo de la noticia hero */
 .hero-image {
-    width: 100%; /* Ancho completo */
-    height: 100%; /* Altura completa */
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Gradiente por defecto */
-    background-size: cover; /* Imagen cubre todo el área */
-    background-position: center; /* Imagen centrada */
-    position: relative; /* Para elementos posicionados absolutamente */
+    width: 100%;
+    /* Ancho completo */
+    height: 100%;
+    /* Altura completa */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    /* Gradiente por defecto */
+    background-size: cover;
+    /* Imagen cubre todo el área */
+    background-position: center;
+    /* Imagen centrada */
+    position: relative;
+    /* Para elementos posicionados absolutamente */
 }
 
 /* Overlay oscuro para legibilidad del texto */
 .hero-overlay {
-    position: absolute; /* Posicionado sobre la imagen */
-    bottom: 0; /* Anclado al fondo */
+    position: absolute;
+    /* Posicionado sobre la imagen */
+    bottom: 0;
+    /* Anclado al fondo */
     left: 0;
     right: 0;
-    background: linear-gradient(transparent, rgba(0,0,0,0.9)); /* Gradiente oscuro */
-    padding: 3rem; /* Espaciado generoso interno */
-    color: white; /* Texto blanco para contraste */
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+    /* Gradiente oscuro */
+    padding: 3rem;
+    /* Espaciado generoso interno */
+    color: white;
+    /* Texto blanco para contraste */
 }
 
 /* Etiqueta de categoría de la noticia hero */
 .hero-category {
-    background: #cc0000; /* Fondo rojo de marca */
-    color: white; /* Texto blanco */
-    padding: 0.4rem 1rem; /* Espaciado compacto */
-    border-radius: 20px; /* Forma de píldora */
-    font-size: 0.8rem; /* Tamaño compacto */
-    font-weight: 600; /* Semi-bold */
-    text-transform: uppercase; /* Mayúsculas */
-    letter-spacing: 1px; /* Espaciado entre letras */
-    display: inline-block; /* Para que respete margin-bottom */
-    margin-bottom: 1rem; /* Separación del título */
+    background: #cc0000;
+    /* Fondo rojo de marca */
+    color: white;
+    /* Texto blanco */
+    padding: 0.4rem 1rem;
+    /* Espaciado compacto */
+    border-radius: 20px;
+    /* Forma de píldora */
+    font-size: 0.8rem;
+    /* Tamaño compacto */
+    font-weight: 600;
+    /* Semi-bold */
+    text-transform: uppercase;
+    /* Mayúsculas */
+    letter-spacing: 1px;
+    /* Espaciado entre letras */
+    display: inline-block;
+    /* Para que respete margin-bottom */
+    margin-bottom: 1rem;
+    /* Separación del título */
 }
 
 /* Título principal de la noticia hero */
 .hero-title {
-    font-size: 2.8rem; /* Tamaño grande e impactante */
-    font-weight: 700; /* Bold */
-    line-height: 1.1; /* Líneas apretadas para impacto */
-    margin-bottom: 1rem; /* Separación del resumen */
+    font-size: 2.8rem;
+    /* Tamaño grande e impactante */
+    font-weight: 700;
+    /* Bold */
+    line-height: 1.1;
+    /* Líneas apretadas para impacto */
+    margin-bottom: 1rem;
+    /* Separación del resumen */
 }
 
 /* Resumen de la noticia hero */
 .hero-summary {
-    font-size: 1.2rem; /* Tamaño generoso para legibilidad */
-    line-height: 1.4; /* Espaciado cómodo entre líneas */
-    opacity: 0.9; /* Ligeramente transparente */
-    margin-bottom: 1.5rem; /* Separación de metadatos */
+    font-size: 1.2rem;
+    /* Tamaño generoso para legibilidad */
+    line-height: 1.4;
+    /* Espaciado cómodo entre líneas */
+    opacity: 0.9;
+    /* Ligeramente transparente */
+    margin-bottom: 1.5rem;
+    /* Separación de metadatos */
 }
 
 /* Metadatos de la noticia hero (fecha, autor, etc.) */
 .hero-meta {
-    display: flex; /* Layout flexbox */
-    align-items: center; /* Alineación vertical */
-    gap: 1.5rem; /* Espacio entre elementos */
-    font-size: 0.9rem; /* Tamaño compacto */
-    opacity: 0.8; /* Transparencia para jerarquía visual */
+    display: flex;
+    /* Layout flexbox */
+    align-items: center;
+    /* Alineación vertical */
+    gap: 1.5rem;
+    /* Espacio entre elementos */
+    font-size: 0.9rem;
+    /* Tamaño compacto */
+    opacity: 0.8;
+    /* Transparencia para jerarquía visual */
 }
 
 /* Elementos individuales de metadatos */
 .hero-meta span {
-    display: flex; /* Layout flexbox para íconos */
-    align-items: center; /* Alineación vertical */
-    gap: 0.5rem; /* Espacio entre ícono y texto */
+    display: flex;
+    /* Layout flexbox para íconos */
+    align-items: center;
+    /* Alineación vertical */
+    gap: 0.5rem;
+    /* Espacio entre ícono y texto */
 }
 
 /* ========================================
@@ -357,121 +529,184 @@ body {
 
 /* Contenedor de la sección de noticias principales */
 .top-stories {
-    margin-bottom: 3rem; /* Separación de la siguiente sección */
+    margin-bottom: 3rem;
+    /* Separación de la siguiente sección */
 }
 
 /* Header de sección con título y línea decorativa */
 .section-header {
-    display: flex; /* Layout flexbox */
-    align-items: center; /* Alineación vertical */
-    gap: 1rem; /* Espacio entre elementos */
-    margin-bottom: 2rem; /* Separación del contenido */
-    padding-bottom: 1rem; /* Espaciado interno inferior */
-    border-bottom: 3px solid #cc0000; /* Línea inferior roja */
+    display: flex;
+    /* Layout flexbox */
+    align-items: center;
+    /* Alineación vertical */
+    gap: 1rem;
+    /* Espacio entre elementos */
+    margin-bottom: 2rem;
+    /* Separación del contenido */
+    padding-bottom: 1rem;
+    /* Espaciado interno inferior */
+    border-bottom: 3px solid #cc0000;
+    /* Línea inferior roja */
 }
 
 /* Título de sección */
 .section-title {
-    font-size: 1.8rem; /* Tamaño prominente */
-    font-weight: 700; /* Bold */
-    color: #000; /* Negro para contraste */
-    margin: 0; /* Sin márgenes por defecto */
+    font-size: 1.8rem;
+    /* Tamaño prominente */
+    font-weight: 700;
+    /* Bold */
+    color: #000;
+    /* Negro para contraste */
+    margin: 0;
+    /* Sin márgenes por defecto */
 }
 
 /* Línea decorativa que se extiende */
 .section-line {
-    flex: 1; /* Toma todo el espacio restante */
-    height: 2px; /* Línea delgada */
-    background: #e0e0e0; /* Gris claro */
+    flex: 1;
+    /* Toma todo el espacio restante */
+    height: 2px;
+    /* Línea delgada */
+    background: #e0e0e0;
+    /* Gris claro */
 }
 
 /* Grid responsivo para tarjetas de noticias */
 .stories-grid {
-    display: grid; /* Layout CSS Grid */
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Columnas responsivas */
-    gap: 2rem; /* Espacio entre tarjetas */
+    display: grid;
+    /* Layout CSS Grid */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    /* Columnas responsivas */
+    gap: 2rem;
+    /* Espacio entre tarjetas */
 }
 
 /* Tarjeta individual de noticia */
 .story-card {
-    background: white; /* Fondo blanco limpio */
-    border-radius: 10px; /* Bordes redondeados */
-    overflow: hidden; /* Oculta contenido que sobresale */
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1); /* Sombra sutil */
-    transition: all 0.3s; /* Transición suave para interacciones */
-    cursor: pointer; /* Indica que es clickeable */
-    border: 1px solid #f0f0f0; /* Borde sutil */
+    background: white;
+    /* Fondo blanco limpio */
+    border-radius: 10px;
+    /* Bordes redondeados */
+    overflow: hidden;
+    /* Oculta contenido que sobresale */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    /* Sombra sutil */
+    transition: all 0.3s;
+    /* Transición suave para interacciones */
+    cursor: pointer;
+    /* Indica que es clickeable */
+    border: 1px solid #f0f0f0;
+    /* Borde sutil */
 }
 
 /* Efecto hover para tarjetas de noticia */
 .story-card:hover {
-    transform: translateY(-5px); /* Elevación en hover */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15); /* Sombra más pronunciada */
+    transform: translateY(-5px);
+    /* Elevación en hover */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    /* Sombra más pronunciada */
 }
 
 /* Imagen de la tarjeta de noticia */
 .story-image {
-    width: 100%; /* Ancho completo */
-    height: 200px; /* Altura fija */
-    background: linear-gradient(45deg, #f0f0f0, #e0e0e0); /* Gradiente placeholder */
-    display: flex; /* Layout flexbox para centrar contenido */
-    align-items: center; /* Alineación vertical centrada */
-    justify-content: center; /* Alineación horizontal centrada */
-    color: #666; /* Color del texto placeholder */
-    font-size: 1.2rem; /* Tamaño del texto placeholder */
-    position: relative; /* Para elementos posicionados absolutamente */
+    width: 100%;
+    /* Ancho completo */
+    height: 200px;
+    /* Altura fija */
+    background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+    /* Gradiente placeholder */
+    display: flex;
+    /* Layout flexbox para centrar contenido */
+    align-items: center;
+    /* Alineación vertical centrada */
+    justify-content: center;
+    /* Alineación horizontal centrada */
+    color: #666;
+    /* Color del texto placeholder */
+    font-size: 1.2rem;
+    /* Tamaño del texto placeholder */
+    position: relative;
+    /* Para elementos posicionados absolutamente */
 }
 
 /* Contenido de texto de la tarjeta */
 .story-content {
-    padding: 1.5rem; /* Espaciado interno generoso */
+    padding: 1.5rem;
+    /* Espaciado interno generoso */
 }
 
 /* Etiqueta de categoría de la noticia */
 .story-category {
-    background: #f8f8f8; /* Fondo gris muy claro */
-    color: #cc0000; /* Texto rojo */
-    padding: 0.3rem 0.8rem; /* Espaciado compacto */
-    border-radius: 15px; /* Forma de píldora */
-    font-size: 0.7rem; /* Tamaño muy compacto */
-    font-weight: 600; /* Semi-bold */
-    text-transform: uppercase; /* Mayúsculas */
-    letter-spacing: 1px; /* Espaciado entre letras */
-    display: inline-block; /* Para respeto de márgenes */
-    margin-bottom: 1rem; /* Separación del título */
+    background: #f8f8f8;
+    /* Fondo gris muy claro */
+    color: #cc0000;
+    /* Texto rojo */
+    padding: 0.3rem 0.8rem;
+    /* Espaciado compacto */
+    border-radius: 15px;
+    /* Forma de píldora */
+    font-size: 0.7rem;
+    /* Tamaño muy compacto */
+    font-weight: 600;
+    /* Semi-bold */
+    text-transform: uppercase;
+    /* Mayúsculas */
+    letter-spacing: 1px;
+    /* Espaciado entre letras */
+    display: inline-block;
+    /* Para respeto de márgenes */
+    margin-bottom: 1rem;
+    /* Separación del título */
 }
 
 /* Título de la noticia */
 .story-title {
-    font-size: 1.3rem; /* Tamaño prominente */
-    font-weight: 700; /* Bold */
-    line-height: 1.3; /* Espaciado entre líneas compacto */
-    margin-bottom: 0.8rem; /* Separación del resumen */
-    color: #000; /* Negro para contraste */
+    font-size: 1.3rem;
+    /* Tamaño prominente */
+    font-weight: 700;
+    /* Bold */
+    line-height: 1.3;
+    /* Espaciado entre líneas compacto */
+    margin-bottom: 0.8rem;
+    /* Separación del resumen */
+    color: #000;
+    /* Negro para contraste */
 }
 
 /* Resumen de la noticia */
 .story-summary {
-    color: #666; /* Gris medio para jerarquía */
-    line-height: 1.5; /* Espaciado cómodo entre líneas */
-    margin-bottom: 1rem; /* Separación de metadatos */
-    font-size: 0.95rem; /* Ligeramente más pequeño que el cuerpo */
+    color: #666;
+    /* Gris medio para jerarquía */
+    line-height: 1.5;
+    /* Espaciado cómodo entre líneas */
+    margin-bottom: 1rem;
+    /* Separación de metadatos */
+    font-size: 0.95rem;
+    /* Ligeramente más pequeño que el cuerpo */
 }
 
 /* Metadatos de la noticia (fecha, autor) */
 .story-meta {
-    display: flex; /* Layout flexbox */
-    align-items: center; /* Alineación vertical */
-    justify-content: space-between; /* Distribuye en extremos */
-    font-size: 0.8rem; /* Tamaño compacto */
-    color: #999; /* Gris claro */
+    display: flex;
+    /* Layout flexbox */
+    align-items: center;
+    /* Alineación vertical */
+    justify-content: space-between;
+    /* Distribuye en extremos */
+    font-size: 0.8rem;
+    /* Tamaño compacto */
+    color: #999;
+    /* Gris claro */
 }
 
 /* Información de tiempo de la noticia */
 .story-time {
-    display: flex; /* Layout flexbox */
-    align-items: center; /* Alineación vertical */
-    gap: 0.3rem; /* Espacio entre ícono y texto */
+    display: flex;
+    /* Layout flexbox */
+    align-items: center;
+    /* Alineación vertical */
+    gap: 0.3rem;
+    /* Espacio entre ícono y texto */
 }
 
 /* ========================================
@@ -480,36 +715,54 @@ body {
 
 /* Contenedor principal de la sidebar */
 .sidebar {
-    display: flex; /* Layout flexbox vertical */
-    flex-direction: column; /* Dirección vertical */
-    gap: 2rem; /* Espacio entre widgets */
+    display: flex;
+    /* Layout flexbox vertical */
+    flex-direction: column;
+    /* Dirección vertical */
+    gap: 2rem;
+    /* Espacio entre widgets */
 }
 
 /* Widget individual de la sidebar */
 .sidebar-widget {
-    background: white; /* Fondo blanco limpio */
-    border-radius: 10px; /* Bordes redondeados */
-    padding: 1.5rem; /* Espaciado interno generoso */
-    box-shadow: 0 5px 20px rgba(0,0,0,0.08); /* Sombra muy sutil */
-    border: 1px solid #f0f0f0; /* Borde sutil */
+    background: white;
+    /* Fondo blanco limpio */
+    border-radius: 10px;
+    /* Bordes redondeados */
+    padding: 1.5rem;
+    /* Espaciado interno generoso */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    /* Sombra muy sutil */
+    border: 1px solid #f0f0f0;
+    /* Borde sutil */
 }
 
 /* Header de widget con ícono y título */
 .widget-header {
-    display: flex; /* Layout flexbox */
-    align-items: center; /* Alineación vertical */
-    gap: 0.8rem; /* Espacio entre ícono y título */
-    margin-bottom: 1.5rem; /* Separación del contenido */
-    padding-bottom: 0.8rem; /* Espaciado interno inferior */
-    border-bottom: 2px solid #cc0000; /* Línea separadora roja */
+    display: flex;
+    /* Layout flexbox */
+    align-items: center;
+    /* Alineación vertical */
+    gap: 0.8rem;
+    /* Espacio entre ícono y título */
+    margin-bottom: 1.5rem;
+    /* Separación del contenido */
+    padding-bottom: 0.8rem;
+    /* Espaciado interno inferior */
+    border-bottom: 2px solid #cc0000;
+    /* Línea separadora roja */
 }
 
 /* Título del widget */
 .widget-title {
-    font-size: 1.2rem; /* Tamaño prominente */
-    font-weight: 700; /* Bold */
-    color: #000; /* Negro para contraste */
-    margin: 0; /* Sin márgenes por defecto */
+    font-size: 1.2rem;
+    /* Tamaño prominente */
+    font-weight: 700;
+    /* Bold */
+    color: #000;
+    /* Negro para contraste */
+    margin: 0;
+    /* Sin márgenes por defecto */
 }
 
 /* ========================================
@@ -518,26 +771,38 @@ body {
 
 /* Lista de elementos trending */
 .trending-list {
-    list-style: none; /* Sin bullets de lista */
+    list-style: none;
+    /* Sin bullets de lista */
 }
 
 /* Item individual de trending */
 .trending-item {
-    display: flex; /* Layout flexbox */
-    align-items: flex-start; /* Alineación superior */
-    gap: 1rem; /* Espacio entre elementos */
-    padding: 1rem 0; /* Espaciado vertical */
-    border-bottom: 1px solid #f0f0f0; /* Línea separadora */
-    cursor: pointer; /* Indica que es clickeable */
-    transition: all 0.3s; /* Transición suave */
+    display: flex;
+    /* Layout flexbox */
+    align-items: flex-start;
+    /* Alineación superior */
+    gap: 1rem;
+    /* Espacio entre elementos */
+    padding: 1rem 0;
+    /* Espaciado vertical */
+    border-bottom: 1px solid #f0f0f0;
+    /* Línea separadora */
+    cursor: pointer;
+    /* Indica que es clickeable */
+    transition: all 0.3s;
+    /* Transición suave */
 }
 
 /* Efecto hover para items de trending */
 .trending-item:hover {
-    background: #f8f8f8; /* Fondo gris claro */
-    margin: 0 -1.5rem; /* Extiende el fondo hasta los bordes */
-    padding: 1rem 1.5rem; /* Ajusta el padding para compensar margin */
-    border-radius: 8px; /* Bordes redondeados */
+    background: #f8f8f8;
+    /* Fondo gris claro */
+    margin: 0 -1.5rem;
+    /* Extiende el fondo hasta los bordes */
+    padding: 1rem 1.5rem;
+    /* Ajusta el padding para compensar margin */
+    border-radius: 8px;
+    /* Bordes redondeados */
 }
 
 /* Último item sin línea separadora */
@@ -547,25 +812,36 @@ body {
 
 /* Número de ranking de trending */
 .trending-rank {
-    font-size: 1.5rem; /* Tamaño grande */
-    font-weight: 900; /* Extra-bold */
-    color: #cc0000; /* Rojo de marca */
-    min-width: 30px; /* Ancho mínimo para alineación */
+    font-size: 1.5rem;
+    /* Tamaño grande */
+    font-weight: 900;
+    /* Extra-bold */
+    color: #cc0000;
+    /* Rojo de marca */
+    min-width: 30px;
+    /* Ancho mínimo para alineación */
 }
 
 /* Contenido del item trending */
 .trending-content h4 {
-    font-size: 0.95rem; /* Tamaño compacto */
-    font-weight: 600; /* Semi-bold */
-    line-height: 1.3; /* Espaciado entre líneas */
-    margin-bottom: 0.3rem; /* Separación de metadatos */
-    color: #000; /* Negro para contraste */
+    font-size: 0.95rem;
+    /* Tamaño compacto */
+    font-weight: 600;
+    /* Semi-bold */
+    line-height: 1.3;
+    /* Espaciado entre líneas */
+    margin-bottom: 0.3rem;
+    /* Separación de metadatos */
+    color: #000;
+    /* Negro para contraste */
 }
 
 /* Metadatos del item trending */
 .trending-meta {
-    font-size: 0.8rem; /* Tamaño muy compacto */
-    color: #666; /* Gris medio */
+    font-size: 0.8rem;
+    /* Tamaño muy compacto */
+    color: #666;
+    /* Gris medio */
 }
 
 /* ========================================
@@ -574,27 +850,36 @@ body {
 
 /* Widget de actualizaciones con estilo especial */
 .live-updates {
-    background: linear-gradient(135deg, #cc0000, #990000); /* Gradiente rojo */
-    color: white; /* Texto blanco */
+    background: linear-gradient(135deg, #cc0000, #990000);
+    /* Gradiente rojo */
+    color: white;
+    /* Texto blanco */
 }
 
 /* Header del widget de actualizaciones en vivo */
 .live-updates .widget-header {
-    border-bottom-color: rgba(255,255,255,0.3); /* Borde semi-transparente */
+    border-bottom-color: rgba(255, 255, 255, 0.3);
+    /* Borde semi-transparente */
 }
 
 /* Título del widget de actualizaciones en vivo */
 .live-updates .widget-title {
-    color: white; /* Título blanco */
+    color: white;
+    /* Título blanco */
 }
 
 /* Item individual de actualización en vivo */
 .live-item {
-    background: rgba(255,255,255,0.1); /* Fondo semi-transparente blanco */
-    border-radius: 8px; /* Bordes redondeados */
-    padding: 1rem; /* Espaciado interno */
-    margin-bottom: 1rem; /* Separación entre items */
-    border-left: 4px solid white; /* Borde izquierdo blanco */
+    background: rgba(255, 255, 255, 0.1);
+    /* Fondo semi-transparente blanco */
+    border-radius: 8px;
+    /* Bordes redondeados */
+    padding: 1rem;
+    /* Espaciado interno */
+    margin-bottom: 1rem;
+    /* Separación entre items */
+    border-left: 4px solid white;
+    /* Borde izquierdo blanco */
 }
 
 /* Último item sin margen inferior */
@@ -604,15 +889,20 @@ body {
 
 /* Timestamp de la actualización en vivo */
 .live-time {
-    font-size: 0.75rem; /* Tamaño muy compacto */
-    opacity: 0.8; /* Ligeramente transparente */
-    margin-bottom: 0.5rem; /* Separación del texto */
+    font-size: 0.75rem;
+    /* Tamaño muy compacto */
+    opacity: 0.8;
+    /* Ligeramente transparente */
+    margin-bottom: 0.5rem;
+    /* Separación del texto */
 }
 
 /* Texto de la actualización en vivo */
 .live-text {
-    font-size: 0.9rem; /* Tamaño compacto */
-    line-height: 1.4; /* Espaciado cómodo entre líneas */
+    font-size: 0.9rem;
+    /* Tamaño compacto */
+    line-height: 1.4;
+    /* Espaciado cómodo entre líneas */
 }
 
 /* ========================================
@@ -621,83 +911,122 @@ body {
 
 /* Sección completa de videos */
 .video-section {
-    background: #f8f8f8; /* Fondo gris muy claro */
-    margin: 3rem -2rem 0; /* Margen negativo para extender a los bordes */
-    padding: 3rem 2rem; /* Espaciado interno generoso */
+    background: #f8f8f8;
+    /* Fondo gris muy claro */
+    margin: 3rem -2rem 0;
+    /* Margen negativo para extender a los bordes */
+    padding: 3rem 2rem;
+    /* Espaciado interno generoso */
 }
 
 /* Contenedor del contenido de videos */
 .video-container {
-    max-width: 1280px; /* Ancho máximo consistente */
-    margin: 0 auto; /* Centrado horizontal */
+    max-width: 1280px;
+    /* Ancho máximo consistente */
+    margin: 0 auto;
+    /* Centrado horizontal */
 }
 
 /* Grid de videos */
 .video-grid {
-    display: grid; /* Layout CSS Grid */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Columnas responsivas */
-    gap: 2rem; /* Espacio entre tarjetas */
+    display: grid;
+    /* Layout CSS Grid */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    /* Columnas responsivas */
+    gap: 2rem;
+    /* Espacio entre tarjetas */
 }
 
 /* Tarjeta individual de video */
 .video-card {
-    background: white; /* Fondo blanco */
-    border-radius: 10px; /* Bordes redondeados */
-    overflow: hidden; /* Oculta contenido que sobresale */
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1); /* Sombra sutil */
-    cursor: pointer; /* Indica que es clickeable */
-    transition: transform 0.3s; /* Transición suave para transform */
+    background: white;
+    /* Fondo blanco */
+    border-radius: 10px;
+    /* Bordes redondeados */
+    overflow: hidden;
+    /* Oculta contenido que sobresale */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    /* Sombra sutil */
+    cursor: pointer;
+    /* Indica que es clickeable */
+    transition: transform 0.3s;
+    /* Transición suave para transform */
 }
 
 /* Efecto hover para tarjetas de video */
 .video-card:hover {
-    transform: translateY(-3px); /* Elevación menor que las noticias */
+    transform: translateY(-3px);
+    /* Elevación menor que las noticias */
 }
 
 /* Thumbnail del video */
 .video-thumbnail {
-    width: 100%; /* Ancho completo */
-    height: 180px; /* Altura fija */
-    background: linear-gradient(45deg, #333, #666); /* Gradiente oscuro */
-    display: flex; /* Layout flexbox */
-    align-items: center; /* Alineación vertical centrada */
-    justify-content: center; /* Alineación horizontal centrada */
-    color: white; /* Color del contenido placeholder */
-    font-size: 3rem; /* Tamaño grande para ícono */
-    position: relative; /* Para botón de play posicionado absolutamente */
+    width: 100%;
+    /* Ancho completo */
+    height: 180px;
+    /* Altura fija */
+    background: linear-gradient(45deg, #333, #666);
+    /* Gradiente oscuro */
+    display: flex;
+    /* Layout flexbox */
+    align-items: center;
+    /* Alineación vertical centrada */
+    justify-content: center;
+    /* Alineación horizontal centrada */
+    color: white;
+    /* Color del contenido placeholder */
+    font-size: 3rem;
+    /* Tamaño grande para ícono */
+    position: relative;
+    /* Para botón de play posicionado absolutamente */
 }
 
 /* Botón de play sobre el thumbnail */
 .play-button {
-    position: absolute; /* Posicionado sobre el thumbnail */
-    background: rgba(204, 0, 0, 0.9); /* Fondo rojo semi-transparente */
-    border-radius: 50%; /* Forma circular */
+    position: absolute;
+    /* Posicionado sobre el thumbnail */
+    background: rgba(204, 0, 0, 0.9);
+    /* Fondo rojo semi-transparente */
+    border-radius: 50%;
+    /* Forma circular */
     width: 60px;
     height: 60px;
-    display: flex; /* Layout flexbox */
-    align-items: center; /* Alineación vertical centrada */
-    justify-content: center; /* Alineación horizontal centrada */
-    color: white; /* Ícono blanco */
-    font-size: 1.5rem; /* Tamaño del ícono */
+    display: flex;
+    /* Layout flexbox */
+    align-items: center;
+    /* Alineación vertical centrada */
+    justify-content: center;
+    /* Alineación horizontal centrada */
+    color: white;
+    /* Ícono blanco */
+    font-size: 1.5rem;
+    /* Tamaño del ícono */
 }
 
 /* Información del video */
 .video-info {
-    padding: 1.2rem; /* Espaciado interno */
+    padding: 1.2rem;
+    /* Espaciado interno */
 }
 
 /* Título del video */
 .video-title {
-    font-size: 1.1rem; /* Tamaño moderado */
-    font-weight: 600; /* Semi-bold */
-    line-height: 1.3; /* Espaciado entre líneas */
-    margin-bottom: 0.5rem; /* Separación de la duración */
+    font-size: 1.1rem;
+    /* Tamaño moderado */
+    font-weight: 600;
+    /* Semi-bold */
+    line-height: 1.3;
+    /* Espaciado entre líneas */
+    margin-bottom: 0.5rem;
+    /* Separación de la duración */
 }
 
 /* Duración del video */
 .video-duration {
-    font-size: 0.8rem; /* Tamaño compacto */
-    color: #666; /* Gris medio */
+    font-size: 0.8rem;
+    /* Tamaño compacto */
+    color: #666;
+    /* Gris medio */
 }
 
 /* ========================================
@@ -706,92 +1035,136 @@ body {
 
 /* Footer principal del sitio */
 .footer {
-    background: #000000; /* Fondo negro */
-    color: #ccc; /* Texto gris claro */
-    padding: 3rem 0 1rem; /* Espaciado vertical generoso */
-    margin-top: 4rem; /* Separación del contenido principal */
+    background: #000000;
+    /* Fondo negro */
+    color: #ccc;
+    /* Texto gris claro */
+    padding: 3rem 0 1rem;
+    /* Espaciado vertical generoso */
+    margin-top: 4rem;
+    /* Separación del contenido principal */
 }
 
 /* Contenido del footer organizado en grid */
 .footer-content {
-    max-width: 1280px; /* Ancho máximo consistente */
-    margin: 0 auto; /* Centrado horizontal */
-    padding: 0 2rem; /* Espaciado lateral */
-    display: grid; /* Layout CSS Grid */
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Columnas responsivas */
-    gap: 2rem; /* Espacio entre secciones */
+    max-width: 1280px;
+    /* Ancho máximo consistente */
+    margin: 0 auto;
+    /* Centrado horizontal */
+    padding: 0 2rem;
+    /* Espaciado lateral */
+    display: grid;
+    /* Layout CSS Grid */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    /* Columnas responsivas */
+    gap: 2rem;
+    /* Espacio entre secciones */
 }
 
 /* Sección individual del footer */
 .footer-section h3 {
-    color: white; /* Títulos en blanco para contraste */
-    margin-bottom: 1rem; /* Separación de la lista */
-    font-size: 1.1rem; /* Tamaño moderado */
-    font-weight: 600; /* Semi-bold */
+    color: white;
+    /* Títulos en blanco para contraste */
+    margin-bottom: 1rem;
+    /* Separación de la lista */
+    font-size: 1.1rem;
+    /* Tamaño moderado */
+    font-weight: 600;
+    /* Semi-bold */
 }
 
 /* Lista de enlaces del footer */
 .footer-section ul {
-    list-style: none; /* Sin bullets */
+    list-style: none;
+    /* Sin bullets */
 }
 
 /* Enlaces individuales del footer */
 .footer-section a {
-    color: #ccc; /* Gris claro por defecto */
-    text-decoration: none; /* Sin subrayado */
-    line-height: 2; /* Espaciado generoso entre líneas */
-    font-size: 0.9rem; /* Tamaño compacto */
-    transition: color 0.3s; /* Transición suave de color */
+    color: #ccc;
+    /* Gris claro por defecto */
+    text-decoration: none;
+    /* Sin subrayado */
+    line-height: 2;
+    /* Espaciado generoso entre líneas */
+    font-size: 0.9rem;
+    /* Tamaño compacto */
+    transition: color 0.3s;
+    /* Transición suave de color */
 }
 
 /* Estado hover de enlaces del footer */
 .footer-section a:hover {
-    color: #cc0000; /* Cambia a rojo en hover */
+    color: #cc0000;
+    /* Cambia a rojo en hover */
 }
 
 /* Logo del footer */
 .footer-logo {
-    font-size: 2rem; /* Tamaño prominente */
-    font-weight: 900; /* Extra-bold */
-    color: #cc0000; /* Rojo de marca */
-    margin-bottom: 1rem; /* Separación de la descripción */
+    font-size: 2rem;
+    /* Tamaño prominente */
+    font-weight: 900;
+    /* Extra-bold */
+    color: #cc0000;
+    /* Rojo de marca */
+    margin-bottom: 1rem;
+    /* Separación de la descripción */
 }
 
 /* Iconos de redes sociales */
 .footer-social {
-    display: flex; /* Layout flexbox */
-    gap: 1rem; /* Espacio entre iconos */
-    margin-top: 1rem; /* Separación superior */
+    display: flex;
+    /* Layout flexbox */
+    gap: 1rem;
+    /* Espacio entre iconos */
+    margin-top: 1rem;
+    /* Separación superior */
 }
 
 /* Icono individual de red social */
 .social-icon {
     width: 40px;
     height: 40px;
-    background: #333; /* Fondo gris oscuro */
-    border-radius: 50%; /* Forma circular */
-    display: flex; /* Layout flexbox */
-    align-items: center; /* Alineación vertical centrada */
-    justify-content: center; /* Alineación horizontal centrada */
-    color: white; /* Ícono blanco */
-    text-decoration: none; /* Sin subrayado */
-    transition: all 0.3s; /* Transición suave para todas las propiedades */
+    background: #333;
+    /* Fondo gris oscuro */
+    border-radius: 50%;
+    /* Forma circular */
+    display: flex;
+    /* Layout flexbox */
+    align-items: center;
+    /* Alineación vertical centrada */
+    justify-content: center;
+    /* Alineación horizontal centrada */
+    color: white;
+    /* Ícono blanco */
+    text-decoration: none;
+    /* Sin subrayado */
+    transition: all 0.3s;
+    /* Transición suave para todas las propiedades */
 }
 
 /* Estado hover de iconos sociales */
 .social-icon:hover {
-    background: #cc0000; /* Fondo rojo en hover */
-    transform: scale(1.1); /* Efecto de crecimiento */
+    background: #cc0000;
+    /* Fondo rojo en hover */
+    transform: scale(1.1);
+    /* Efecto de crecimiento */
 }
 
 /* Sección inferior del footer con información legal */
 .footer-bottom {
-    text-align: center; /* Texto centrado */
-    padding-top: 2rem; /* Espaciado superior */
-    margin-top: 2rem; /* Separación del contenido principal */
-    border-top: 1px solid #333; /* Línea separadora */
-    color: #666; /* Gris medio para información secundaria */
-    font-size: 0.8rem; /* Tamaño compacto */
+    text-align: center;
+    /* Texto centrado */
+    padding-top: 2rem;
+    /* Espaciado superior */
+    margin-top: 2rem;
+    /* Separación del contenido principal */
+    border-top: 1px solid #333;
+    /* Línea separadora */
+    color: #666;
+    /* Gris medio para información secundaria */
+    font-size: 0.8rem;
+    /* Tamaño compacto */
 }
 
 /* ========================================
@@ -799,56 +1172,120 @@ body {
    ======================================== */
 
 /* Media query para dispositivos móviles y tablets */
-@media (max-width: 768px) {
-    /* Header responsivo */
-    .header-content {
-        flex-direction: column; /* Cambia a layout vertical */
-        gap: 1rem; /* Espacio entre elementos */
-    }
-
-    /* Campo de búsqueda más pequeño en móviles */
-    .search-box {
-        width: 280px; /* Ancho reducido para pantallas pequeñas */
-    }
-
-    /* Navegación responsiva */
-    .nav-menu {
-        flex-wrap: wrap; /* Permite que los elementos se envuelvan */
-        justify-content: center; /* Centra los elementos */
-    }
-
-    /* Enlaces de navegación más compactos */
-    .nav-menu a {
-        padding: 0.8rem 1rem; /* Reduce el espaciado */
-        font-size: 0.8rem; /* Reduce el tamaño de fuente */
-    }
-
-    /* Layout de una sola columna en móviles */
+@media (max-width: 992px) {
     .container {
-        grid-template-columns: 1fr; /* Una sola columna */
-        gap: 2rem; /* Reduce el espacio entre secciones */
-        padding: 0 1rem; /* Reduce el espaciado lateral */
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
     }
 
-    /* Título hero más pequeño en móviles */
-    .hero-title {
-        font-size: 2rem; /* Reduce el tamaño del título */
+    .hero-section {
+        margin-bottom: 2rem;
+    }
+}
+
+/* Media query para tablets */
+@media (max-width: 768px) {
+    body {
+        font-size: 95%;
+        /* Ligeramente más pequeño para acomodar contenido */
     }
 
-    /* Overlay hero con menos espaciado */
+    .header-content,
+    .header-right,
+    .user-menu {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+
+    .nav-menu {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .nav-menu a {
+        padding: 0.7rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .container {
+        padding: 0 1rem;
+        gap: 2rem;
+    }
+
+    .hero-story {
+        height: 400px;
+        /* Altura reducida para móviles */
+    }
+
     .hero-overlay {
-        padding: 2rem; /* Reduce el espaciado interno */
+        padding: 1.5rem;
     }
 
-    /* Grid de noticias en una sola columna */
-    .stories-grid {
-        grid-template-columns: 1fr; /* Una sola columna */
+    .hero-title {
+        font-size: 2.2rem;
+        /* Título hero más pequeño */
     }
 
-    /* Sección de videos responsiva */
+    .hero-summary {
+        font-size: 1rem;
+    }
+
+    .hero-meta {
+        flex-wrap: wrap;
+        gap: 0.8rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .story-title {
+        font-size: 1.1rem;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .footer-social {
+        justify-content: center;
+    }
+
     .video-section {
-        margin: 2rem -1rem 0; /* Ajusta márgenes para pantallas pequeñas */
-        padding: 2rem 1rem; /* Reduce el espaciado interno */
+        margin: 2rem -1rem 0;
+        padding: 2rem 1rem;
+    }
+}
+
+/* Media query para móviles pequeños */
+@media (max-width: 480px) {
+    .header-top-content {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .hero-overlay {
+        padding: 1rem;
+    }
+
+    .hero-title {
+        font-size: 1.8rem;
+    }
+
+    .story-content,
+    .sidebar-widget,
+    .video-info {
+        padding: 1rem;
+    }
+
+    .pico-y-placa-selector {
+        padding: 0.7rem;
     }
 }
 
@@ -858,21 +1295,34 @@ body {
 
 /* Clase para elementos en estado de carga */
 .loading {
-    opacity: 0.7; /* Reduce la opacidad */
-    pointer-events: none; /* Deshabilita la interacción */
+    opacity: 0.7;
+    /* Reduce la opacidad */
+    pointer-events: none;
+    /* Deshabilita la interacción */
 }
 
 /* Efecto skeleton para elementos en carga */
 .skeleton {
-    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); /* Gradiente animado */
-    background-size: 200% 100%; /* Tamaño del gradiente */
-    animation: loading 1.5s infinite; /* Animación continua */
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    /* Gradiente animado */
+    background-size: 200% 100%;
+    /* Tamaño del gradiente */
+    animation: loading 1.5s infinite;
+    /* Animación continua */
 }
 
 /* Animación del efecto skeleton */
 @keyframes loading {
-    0% { background-position: 200% 0; } /* Inicia desde la derecha */
-    100% { background-position: -200% 0; } /* Termina en la izquierda */
+    0% {
+        background-position: 200% 0;
+    }
+
+    /* Inicia desde la derecha */
+    100% {
+        background-position: -200% 0;
+    }
+
+    /* Termina en la izquierda */
 }
 
 /* ========================================
@@ -881,15 +1331,24 @@ body {
 
 /* Clase para contenido solo visible para lectores de pantalla */
 .sr-only {
-    position: absolute; /* Posicionamiento absoluto */
-    width: 1px; /* Ancho mínimo */
-    height: 1px; /* Altura mínima */
-    padding: 0; /* Sin espaciado */
-    margin: -1px; /* Margen negativo */
-    overflow: hidden; /* Oculta el contenido */
-    clip: rect(0, 0, 0, 0); /* Clip para ocultar */
-    white-space: nowrap; /* Sin saltos de línea */
-    border: 0; /* Sin borde */
+    position: absolute;
+    /* Posicionamiento absoluto */
+    width: 1px;
+    /* Ancho mínimo */
+    height: 1px;
+    /* Altura mínima */
+    padding: 0;
+    /* Sin espaciado */
+    margin: -1px;
+    /* Margen negativo */
+    overflow: hidden;
+    /* Oculta el contenido */
+    clip: rect(0, 0, 0, 0);
+    /* Clip para ocultar */
+    white-space: nowrap;
+    /* Sin saltos de línea */
+    border: 0;
+    /* Sin borde */
 }
 
 /* ========================================
@@ -898,65 +1357,174 @@ body {
 
 /* Icono del header de widget */
 .widget-header-icon {
-    font-size: 1.2rem; /* Tamaño del ícono */
+    font-size: 1.2rem;
+    /* Tamaño del ícono */
 }
 
 /* Descripción del newsletter */
 .newsletter-description {
-    margin-bottom: 1rem; /* Separación del formulario */
-    color: #666; /* Color gris medio */
-    font-size: 0.9rem; /* Tamaño compacto */
+    margin-bottom: 1rem;
+    /* Separación del formulario */
+    color: #666;
+    /* Color gris medio */
+    font-size: 0.9rem;
+    /* Tamaño compacto */
 }
 
 /* Grupo de entrada del newsletter */
 .newsletter-input-group {
-    margin-bottom: 1rem; /* Separación de los términos */
+    margin-bottom: 1rem;
+    /* Separación de los términos */
 }
 
 /* Campo de entrada del newsletter */
 .newsletter-input {
-    width: 100%; /* Ancho completo */
-    padding: 0.8rem; /* Espaciado interno */
-    border: 2px solid #e0e0e0; /* Borde gris claro */
-    border-radius: 8px; /* Bordes redondeados */
-    font-size: 0.9rem; /* Tamaño de fuente */
-    margin-bottom: 1rem; /* Separación del botón */
+    width: 100%;
+    /* Ancho completo */
+    padding: 0.8rem;
+    /* Espaciado interno */
+    border: 2px solid #e0e0e0;
+    /* Borde gris claro */
+    border-radius: 8px;
+    /* Bordes redondeados */
+    font-size: 0.9rem;
+    /* Tamaño de fuente */
+    margin-bottom: 1rem;
+    /* Separación del botón */
 }
 
 /* Botón de suscripción al newsletter */
 .newsletter-button {
-    width: 100%; /* Ancho completo */
-    padding: 0.8rem; /* Espaciado interno */
-    background: #cc0000; /* Fondo rojo de marca */
-    color: white; /* Texto blanco */
-    border: none; /* Sin borde */
-    border-radius: 8px; /* Bordes redondeados */
-    cursor: pointer; /* Cursor de puntero */
-    font-weight: 600; /* Semi-bold */
-    text-transform: uppercase; /* Texto en mayúsculas */
-    letter-spacing: 1px; /* Espaciado entre letras */
-    transition: background 0.3s; /* Transición suave del fondo */
+    width: 100%;
+    /* Ancho completo */
+    padding: 0.8rem;
+    /* Espaciado interno */
+    background: #cc0000;
+    /* Fondo rojo de marca */
+    color: white;
+    /* Texto blanco */
+    border: none;
+    /* Sin borde */
+    border-radius: 8px;
+    /* Bordes redondeados */
+    cursor: pointer;
+    /* Cursor de puntero */
+    font-weight: 600;
+    /* Semi-bold */
+    text-transform: uppercase;
+    /* Texto en mayúsculas */
+    letter-spacing: 1px;
+    /* Espaciado entre letras */
+    transition: background 0.3s;
+    /* Transición suave del fondo */
 }
 
 /* Estado hover del botón de newsletter */
 .newsletter-button:hover {
-    background: #990000; /* Fondo rojo más oscuro en hover */
+    background: #990000;
+    /* Fondo rojo más oscuro en hover */
 }
 
 /* Términos y condiciones del newsletter */
 .newsletter-terms {
-    font-size: 0.75rem; /* Tamaño muy pequeño */
-    color: #999; /* Gris muy claro */
+    font-size: 0.75rem;
+    /* Tamaño muy pequeño */
+    color: #999;
+    /* Gris muy claro */
 }
 
 /* Descripción en el footer */
 .footer-description {
-    color: #666; /* Gris medio */
-    line-height: 1.5; /* Espaciado cómodo entre líneas */
-    margin-bottom: 1rem; /* Separación de las redes sociales */
+    color: #666;
+    /* Gris medio */
+    line-height: 1.5;
+    /* Espaciado cómodo entre líneas */
+    margin-bottom: 1rem;
+    /* Separación de las redes sociales */
 }
 
 /* Texto adicional en el footer inferior */
 .footer-bottom-text {
-    margin-top: 0.5rem; /* Separación superior mínima */
+    margin-top: 0.5rem;
+    /* Separación superior mínima */
+}
+
+/* ========================================
+   WIDGET PICO Y PLACA
+   ======================================== */
+
+.pico-y-placa-content p {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.pico-y-placa-selector {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    background-color: #fff;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M5%208l5%205%205-5z%22%20fill%3D%22%23666%22/%3E%3C/svg%3E');
+    background-repeat: no-repeat;
+    background-position: right 0.7rem top 50%;
+    background-size: 1.2em;
+}
+
+.pico-y-placa-info {
+    background: #f8f8f8;
+    border-radius: 8px;
+    padding: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    min-height: 80px;
+}
+
+.pico-y-placa-info h5 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+    color: #000;
+}
+
+.pico-y-placa-info p {
+    margin: 0 0 0.5rem 0;
+    color: #333;
+}
+
+/* ========================================
+   ESPACIOS PUBLICITARIOS
+   ======================================== */
+
+.ad-placeholder {
+    background: #f0f0f0;
+    border: 1px dashed #ccc;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #999;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.ad-sidebar {
+    width: 100%;
+    min-height: 250px;
+    /* Altura común para anuncios de sidebar */
+}
+
+.ad-in-feed {
+    /* La altura se ajustará al contenido de la tarjeta de historia */
+    min-height: 420px;
+    /* Similar a una story-card */
+    width: 100%;
+    grid-column: span 1;
+    /* Asegura que ocupe una columna en el grid */
 }

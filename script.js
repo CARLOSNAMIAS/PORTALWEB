@@ -1,137 +1,137 @@
 // Función para actualizar la hora actual
-        function updateTime() {
-            const now = new Date();
-            const timeString = now.toLocaleTimeString('es-ES', { 
-                hour: '2-digit', 
-                minute: '2-digit',
-                timeZone: 'America/Bogota'
-            });
-            document.getElementById('current-time').textContent = timeString;
-        }
+function updateTime() {
+    const now = new Date();
+    const timeString = now.toLocaleTimeString('es-ES', {
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZone: 'America/Bogota'
+    });
+    document.getElementById('current-time').textContent = timeString;
+}
 
-        // Función para cambiar categorías
-        function showCategory(category) {
-            // Actualizar navegación activa
-            document.querySelectorAll('.nav-menu a').forEach(link => {
-                link.classList.remove('active');
-            });
-            
-            // Simular carga de contenido por categoría
-            showNotification(`Cargando noticias de ${category.toUpperCase()}...`, 'info');
-            
-            // En una implementación real, aquí cargarías contenido específico
-            setTimeout(() => {
-                showNotification(`Noticias de ${category} actualizadas`, 'success');
-            }, 1000);
-        }
+// Función para cambiar categorías
+function showCategory(category) {
+    // Actualizar navegación activa
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.classList.remove('active');
+    });
 
-        // Función para abrir artículos
-        function openArticle(title) {
-            showNotification('Abriendo artículo...', 'info');
-            
-            setTimeout(() => {
-                alert(`📰 ${title}\n\nEn una implementación real, esto abriría el artículo completo con:\n• Contenido completo del artículo\n• Galería de imágenes\n• Videos relacionados\n• Comentarios de lectores\n• Artículos relacionados\n• Opciones para compartir`);
-            }, 500);
-        }
+    // Simular carga de contenido por categoría
+    showNotification(`Cargando noticias de ${category.toUpperCase()}...`, 'info');
 
-        // Función para reproducir videos
-        function playVideo(title) {
-            showNotification('Cargando reproductor de video...', 'info');
-            
-            setTimeout(() => {
-                alert(`🎥 ${title}\n\nEn una implementación real, esto abriría:\n• Reproductor de video integrado\n• Controles de reproducción\n• Subtítulos disponibles\n• Videos relacionados\n• Opciones de calidad\n• Modo pantalla completa`);
-            }, 500);
-        }
+    // En una implementación real, aquí cargarías contenido específico
+    setTimeout(() => {
+        showNotification(`Noticias de ${category} actualizadas`, 'success');
+    }, 1000);
+}
 
-        // Función para suscripción al boletín
-        function subscribeNewsletter() {
-            const emailInput = event.target.previousElementSibling;
-            const email = emailInput.value.trim();
-            
-            if (!email) {
-                showNotification('Por favor ingresa tu email', 'error');
-                return;
+// Función para abrir artículos
+function openArticle(title) {
+    showNotification('Abriendo artículo...', 'info');
+
+    setTimeout(() => {
+        alert(`📰 ${title}\n\nEn una implementación real, esto abriría el artículo completo con:\n• Contenido completo del artículo\n• Galería de imágenes\n• Videos relacionados\n• Comentarios de lectores\n• Artículos relacionados\n• Opciones para compartir`);
+    }, 500);
+}
+
+// Función para reproducir videos
+function playVideo(title) {
+    showNotification('Cargando reproductor de video...', 'info');
+
+    setTimeout(() => {
+        alert(`🎥 ${title}\n\nEn una implementación real, esto abriría:\n• Reproductor de video integrado\n• Controles de reproducción\n• Subtítulos disponibles\n• Videos relacionados\n• Opciones de calidad\n• Modo pantalla completa`);
+    }, 500);
+}
+
+// Función para suscripción al boletín
+function subscribeNewsletter() {
+    const emailInput = event.target.previousElementSibling;
+    const email = emailInput.value.trim();
+
+    if (!email) {
+        showNotification('Por favor ingresa tu email', 'error');
+        return;
+    }
+
+    if (!email.includes('@') || !email.includes('.')) {
+        showNotification('Por favor ingresa un email válido', 'error');
+        return;
+    }
+
+    // Simular suscripción
+    event.target.textContent = 'SUSCRIBIENDO...';
+    event.target.disabled = true;
+
+    setTimeout(() => {
+        showNotification(`¡Suscripción exitosa! Recibirás noticias en ${email}`, 'success');
+        emailInput.value = '';
+        event.target.textContent = 'SUSCRIBIRSE';
+        event.target.disabled = false;
+    }, 2000);
+}
+
+// Función de búsqueda mejorada
+function setupAdvancedSearch() {
+    const searchBox = document.querySelector('.search-box');
+    let searchTimeout;
+
+    searchBox.addEventListener('input', function () {
+        clearTimeout(searchTimeout);
+        const query = this.value.trim();
+
+        if (query.length > 2) {
+            searchTimeout = setTimeout(() => {
+                showSearchSuggestions(query);
+            }, 300);
+        }
+    });
+
+    searchBox.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            const query = this.value.trim();
+            if (query) {
+                performSearch(query);
             }
-            
-            if (!email.includes('@') || !email.includes('.')) {
-                showNotification('Por favor ingresa un email válido', 'error');
-                return;
-            }
-            
-            // Simular suscripción
-            event.target.textContent = 'SUSCRIBIENDO...';
-            event.target.disabled = true;
-            
-            setTimeout(() => {
-                showNotification(`¡Suscripción exitosa! Recibirás noticias en ${email}`, 'success');
-                emailInput.value = '';
-                event.target.textContent = 'SUSCRIBIRSE';
-                event.target.disabled = false;
-            }, 2000);
         }
+    });
+}
 
-        // Función de búsqueda mejorada
-        function setupAdvancedSearch() {
-            const searchBox = document.querySelector('.search-box');
-            let searchTimeout;
-            
-            searchBox.addEventListener('input', function() {
-                clearTimeout(searchTimeout);
-                const query = this.value.trim();
-                
-                if (query.length > 2) {
-                    searchTimeout = setTimeout(() => {
-                        showSearchSuggestions(query);
-                    }, 300);
-                }
-            });
-            
-            searchBox.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    const query = this.value.trim();
-                    if (query) {
-                        performSearch(query);
-                    }
-                }
-            });
-        }
+// Función para mostrar sugerencias de búsqueda
+function showSearchSuggestions(query) {
+    // En una implementación real, esto haría una llamada a la API
+    console.log(`Buscando sugerencias para: ${query}`);
+}
 
-        // Función para mostrar sugerencias de búsqueda
-        function showSearchSuggestions(query) {
-            // En una implementación real, esto haría una llamada a la API
-            console.log(`Buscando sugerencias para: ${query}`);
-        }
+// Función para realizar búsqueda
+function performSearch(query) {
+    showNotification(`Buscando: "${query}"...`, 'info');
 
-        // Función para realizar búsqueda
-        function performSearch(query) {
-            showNotification(`Buscando: "${query}"...`, 'info');
-            
-            // Simular búsqueda
-            setTimeout(() => {
-                alert(`🔍 Resultados de búsqueda para: "${query}"\n\nEn una implementación real mostraría:\n• Artículos relacionados\n• Videos\n• Imágenes\n• Filtros por fecha y categoría\n• Ordenamiento por relevancia`);
-                document.querySelector('.search-box').value = '';
-            }, 1000);
-        }
+    // Simular búsqueda
+    setTimeout(() => {
+        alert(`🔍 Resultados de búsqueda para: "${query}"\n\nEn una implementación real mostraría:\n• Artículos relacionados\n• Videos\n• Imágenes\n• Filtros por fecha y categoría\n• Ordenamiento por relevancia`);
+        document.querySelector('.search-box').value = '';
+    }, 1000);
+}
 
-        // Sistema de notificaciones mejorado
-        function showNotification(message, type = 'info') {
-            // Remover notificación existente si hay una
-            const existingNotification = document.querySelector('.notification');
-            if (existingNotification) {
-                existingNotification.remove();
-            }
-            
-            const notification = document.createElement('div');
-            notification.className = `notification notification-${type}`;
-            
-            const colors = {
-                success: '#27ae60',
-                error: '#e74c3c',
-                info: '#3498db',
-                warning: '#f39c12'
-            };
-            
-            notification.style.cssText = `
+// Sistema de notificaciones mejorado
+function showNotification(message, type = 'info') {
+    // Remover notificación existente si hay una
+    const existingNotification = document.querySelector('.notification');
+    if (existingNotification) {
+        existingNotification.remove();
+    }
+
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+
+    const colors = {
+        success: '#27ae60',
+        error: '#e74c3c',
+        info: '#3498db',
+        warning: '#f39c12'
+    };
+
+    notification.style.cssText = `
                 position: fixed;
                 top: 20px;
                 right: 20px;
@@ -147,118 +147,118 @@
                 transition: transform 0.3s ease-out;
                 max-width: 400px;
             `;
-            
-            notification.textContent = message;
-            document.body.appendChild(notification);
-            
-            // Animar entrada
-            setTimeout(() => {
-                notification.style.transform = 'translateX(0)';
-            }, 10);
-            
-            // Remover después de 4 segundos
-            setTimeout(() => {
-                notification.style.transform = 'translateX(100%)';
-                setTimeout(() => {
-                    if (document.body.contains(notification)) {
-                        document.body.removeChild(notification);
-                    }
-                }, 300);
-            }, 4000);
-        }
 
-        // Función para scroll suave mejorado
-        function setupSmoothScrolling() {
-            // Detectar scroll para efectos
-            let ticking = false;
-            
-            function updateOnScroll() {
-                const scrolled = window.pageYOffset;
-                const nav = document.querySelector('.nav');
-                
-                if (scrolled > 100) {
-                    nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
-                } else {
-                    nav.style.boxShadow = 'none';
-                }
-                
-                ticking = false;
+    notification.textContent = message;
+    document.body.appendChild(notification);
+
+    // Animar entrada
+    setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+    }, 10);
+
+    // Remover después de 4 segundos
+    setTimeout(() => {
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+            if (document.body.contains(notification)) {
+                document.body.removeChild(notification);
             }
-            
-            window.addEventListener('scroll', () => {
-                if (!ticking) {
-                    requestAnimationFrame(updateOnScroll);
-                    ticking = true;
-                }
-            });
+        }, 300);
+    }, 4000);
+}
+
+// Función para scroll suave mejorado
+function setupSmoothScrolling() {
+    // Detectar scroll para efectos
+    let ticking = false;
+
+    function updateOnScroll() {
+        const scrolled = window.pageYOffset;
+        const nav = document.querySelector('.nav');
+
+        if (scrolled > 100) {
+            nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+        } else {
+            nav.style.boxShadow = 'none';
         }
 
-        // Función para lazy loading de contenido
-        function setupContentLazyLoading() {
-            const observerOptions = {
-                root: null,
-                rootMargin: '50px',
-                threshold: 0.1
-            };
+        ticking = false;
+    }
 
-            const contentObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('fade-in');
-                        contentObserver.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            // Observar elementos que necesitan lazy loading
-            document.querySelectorAll('.story-card, .video-card').forEach(card => {
-                contentObserver.observe(card);
-            });
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(updateOnScroll);
+            ticking = true;
         }
+    });
+}
 
-        // Función para simular actualizaciones en tiempo real
-        function startLiveUpdates() {
-            const liveContainer = document.querySelector('.live-updates');
-            const updates = [
-                'Presidente anuncia nueva inversión en infraestructura',
-                'Bolsa de valores cierra con tendencia positiva',
-                'Meteorología emite alerta por lluvias intensas',
-                'Ministro de Salud presenta nuevo protocolo sanitario',
-                'Universidad Nacional inaugura centro de investigación'
-            ];
-            
-            let updateIndex = 0;
-            
-            setInterval(() => {
-                if (liveContainer && updates[updateIndex]) {
-                    const now = new Date();
-                    const timeString = now.toLocaleTimeString('es-ES', { 
-                        hour: '2-digit', 
-                        minute: '2-digit'
-                    });
-                    
-                    const newUpdate = document.createElement('div');
-                    newUpdate.className = 'live-item';
-                    newUpdate.innerHTML = `
+// Función para lazy loading de contenido
+function setupContentLazyLoading() {
+    const observerOptions = {
+        root: null,
+        rootMargin: '50px',
+        threshold: 0.1
+    };
+
+    const contentObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in');
+                contentObserver.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Observar elementos que necesitan lazy loading
+    document.querySelectorAll('.story-card, .video-card').forEach(card => {
+        contentObserver.observe(card);
+    });
+}
+
+// Función para simular actualizaciones en tiempo real
+function startLiveUpdates() {
+    const liveContainer = document.querySelector('.live-updates');
+    const updates = [
+        'Presidente anuncia nueva inversión en infraestructura',
+        'Bolsa de valores cierra con tendencia positiva',
+        'Meteorología emite alerta por lluvias intensas',
+        'Ministro de Salud presenta nuevo protocolo sanitario',
+        'Universidad Nacional inaugura centro de investigación'
+    ];
+
+    let updateIndex = 0;
+
+    setInterval(() => {
+        if (liveContainer && updates[updateIndex]) {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('es-ES', {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+
+            const newUpdate = document.createElement('div');
+            newUpdate.className = 'live-item';
+            newUpdate.innerHTML = `
                         <div class="live-time">${timeString}</div>
                         <div class="live-text">${updates[updateIndex]}</div>
                     `;
-                    
-                    const firstUpdate = liveContainer.querySelector('.live-item');
-                    if (firstUpdate) {
-                        liveContainer.insertBefore(newUpdate, firstUpdate);
-                    }
-                    
-                    // Mantener solo las últimas 4 actualizaciones
-                    const allUpdates = liveContainer.querySelectorAll('.live-item');
-                    if (allUpdates.length > 4) {
-                        allUpdates[allUpdates.length - 1].remove();
-                    }
-                    
-                    updateIndex = (updateIndex + 1) % updates.length;
-                }
-            }, 120000); // Cada 2 minutos
+
+            const firstUpdate = liveContainer.querySelector('.live-item');
+            if (firstUpdate) {
+                liveContainer.insertBefore(newUpdate, firstUpdate);
+            }
+
+            // Mantener solo las últimas 4 actualizaciones
+            const allUpdates = liveContainer.querySelectorAll('.live-item');
+            if (allUpdates.length > 4) {
+                allUpdates[allUpdates.length - 1].remove();
+            }
+
+            updateIndex = (updateIndex + 1) % updates.length;
         }
+    }, 120000); // Cada 2 minutos
+}
 
 // --- FUNCIONES DE RENDERIZADO DINÁMICO ---
 
@@ -285,10 +285,14 @@ function renderHeroStory(story) {
 
 function renderTopStories(stories) {
     const storiesGrid = document.querySelector('.stories-grid');
-    storiesGrid.innerHTML = stories.map(story => `
+    let storiesHtml = stories.map(story => {
+        const imageHtml = story.image.startsWith('img/')
+            ? `<img src="${story.image}" alt="${story.alt}" style="width: 100%; height: 100%; object-fit: cover;">`
+            : story.image;
+        return `
         <article class="story-card" onclick="openArticle('${story.title}')">
             <div class="story-image">
-                ${story.image}
+                ${imageHtml}
             </div>
             <div class="story-content">
                 <span class="story-category">${story.category}</span>
@@ -300,7 +304,21 @@ function renderTopStories(stories) {
                 </div>
             </div>
         </article>
-    `).join('');
+    `});
+
+    // Inyectar anuncio después de la segunda noticia
+    if (storiesHtml.length > 2) {
+        const adHtml = `
+            <article class="story-card">
+                <div class="ad-placeholder ad-in-feed">
+                    <span>Publicidad</span>
+                </div>
+            </article>
+        `;
+        storiesHtml.splice(2, 0, adHtml);
+    }
+
+    storiesGrid.innerHTML = storiesHtml.join('');
 }
 
 function renderTrendingStories(stories) {
@@ -350,52 +368,193 @@ function renderVideos(videos) {
 }
 
 
-        // Inicialización completa
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('🔴 CNN Portal cargado correctamente');
-            
-            // Renderizar contenido dinámico
-            renderHeroStory(heroStory);
-            renderTopStories(topStories);
-            renderTrendingStories(trendingStories);
-            renderLiveUpdates(liveUpdates);
-            renderVideos(featuredVideos);
+// --- FUNCIONES DE PICO Y PLACA ---
 
-            // Configurar todas las funcionalidades
-            updateTime();
-            setupAdvancedSearch();
-            setupSmoothScrolling();
-            setupContentLazyLoading();
-            startLiveUpdates();
-            
-            // Actualizar hora cada minuto
-            setInterval(updateTime, 60000);
-            
-            // Mostrar bienvenida
-            setTimeout(() => {
-                showNotification('🔴 Conectado a CNN en vivo - Noticias actualizándose automáticamente', 'success');
-            }, 1500);
-            
-            // Agregar efectos de fade-in
-            setTimeout(() => {
-                document.querySelectorAll('.story-card, .sidebar-widget').forEach((el, index) => {
-                    setTimeout(() => {
-                        el.style.opacity = '0';
-                        el.style.transform = 'translateY(20px)';
-                        el.style.transition = 'all 0.6s ease-out';
-                        
-                        setTimeout(() => {
-                            el.style.opacity = '1';
-                            el.style.transform = 'translateY(0)';
-                        }, 100);
-                    }, index * 100);
-                });
-            }, 500);
+function setupPicoYPlaca() {
+    const citySelector = document.getElementById('pico-y-placa-city-selector');
+    const infoContainer = document.getElementById('pico-y-placa-info');
+
+    if (!citySelector || !infoContainer || typeof picoYPlacaData === 'undefined') {
+        console.error("Elementos del DOM de Pico y Placa o los datos no se encontraron.");
+        return;
+    }
+
+    const cities = Object.keys(picoYPlacaData);
+
+    // 1. Populate city selector
+    cities.forEach(city => {
+        const option = document.createElement('option');
+        option.value = city;
+        option.textContent = city;
+        citySelector.appendChild(option);
+    });
+
+    // 2. Function to update info
+    const updatePicoYPlacaInfo = (city) => {
+        const data = picoYPlacaData[city];
+        if (!data) {
+            infoContainer.innerHTML = '<p>No hay datos para la ciudad seleccionada.</p>';
+            return;
+        }
+
+        const today = new Date();
+        const dayOfWeek = today.getDay(); // Sunday = 0, Monday = 1, etc.
+        const dayOfMonth = today.getDate();
+
+        const restriccion = data.getRestriccion(dayOfWeek, dayOfMonth);
+
+        infoContainer.innerHTML = `
+            <h5>Hoy en ${city}</h5>
+            <p><strong>Restricción:</strong> ${restriccion}</p>
+            <p><small><strong>Horario:</strong> ${data.horario}</small></p>
+        `;
+    };
+
+    // 3. Add event listener
+    citySelector.addEventListener('change', (e) => {
+        updatePicoYPlacaInfo(e.target.value);
+    });
+
+    // 4. Initial update
+    if (cities.length > 0) {
+        updatePicoYPlacaInfo(cities[0]);
+    }
+}
+
+
+// --- FUNCIONES DE CLIMA ---
+
+function getWeatherIcon(wmoCode) {
+    const icons = {
+        0: '☀️', // Clear sky
+        1: '🌤️', // Mainly clear
+        2: '⛅', // Partly cloudy
+        3: '☁️', // Overcast
+        45: '🌫️', // Fog
+        48: '🌫️', // Depositing rime fog
+        51: '🌦️', // Drizzle: Light
+        53: '🌦️', // Drizzle: Moderate
+        55: '🌦️', // Drizzle: Dense intensity
+        61: '🌧️', // Rain: Slight
+        63: '🌧️', // Rain: Moderate
+        65: '🌧️', // Rain: Heavy intensity
+        66: '🌧️', // Freezing Rain: Light
+        67: '🌧️', // Freezing Rain: Heavy intensity
+        71: '🌨️', // Snow fall: Slight
+        73: '🌨️', // Snow fall: Moderate
+        75: '🌨️', // Snow fall: Heavy intensity
+        77: '🌨️', // Snow grains
+        80: '⛈️', // Rain showers: Slight
+        81: '⛈️', // Rain showers: Moderate
+        82: '⛈️', // Rain showers: Violent
+        85: '🌨️', // Snow showers slight
+        86: '🌨️', // Snow showers heavy
+        95: '🌩️', // Thunderbolt
+        96: '🌩️', // Thunderstorm with slight hail
+        99: '🌩️', // Thunderstorm with heavy hail
+    };
+    return icons[wmoCode] || '🤷';
+}
+
+function fetchUserWeather() {
+    if ('geolocation' in navigator) {
+        navigator.geolocation.getCurrentPosition(async (position) => {
+            const { latitude, longitude } = position.coords;
+
+            try {
+                const [weatherResponse, geoResponse] = await Promise.all([
+                    fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`),
+                    fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=es`)
+                ]);
+
+                if (!weatherResponse.ok || !geoResponse.ok) {
+                    throw new Error('Failed to fetch data');
+                }
+
+                const weatherData = await weatherResponse.json();
+                const geoData = await geoResponse.json();
+
+                const locationElement = document.getElementById('location');
+                const weatherElement = document.getElementById('weather');
+
+                const city = geoData.city || geoData.locality || 'Ubicación desconocida';
+                const country = geoData.countryName || '';
+                const temperature = Math.round(weatherData.current_weather.temperature);
+                const weatherCode = weatherData.current_weather.weathercode;
+                const icon = getWeatherIcon(weatherCode);
+
+                if (locationElement) locationElement.textContent = `📍 ${city}, ${country}`;
+                if (weatherElement) weatherElement.textContent = `${icon} ${temperature}°C`;
+
+                // Auto-select Pico y Placa city
+                if (city && typeof picoYPlacaData !== 'undefined' && picoYPlacaData[city]) {
+                    const citySelector = document.getElementById('pico-y-placa-city-selector');
+                    if (citySelector) {
+                        citySelector.value = city;
+                        citySelector.dispatchEvent(new Event('change'));
+                    }
+                }
+
+            } catch (error) {
+                console.error("Error fetching weather or location data:", error);
+            }
+        }, (error) => {
+            console.error("Error getting geolocation:", error.message);
         });
+    } else {
+        console.log("Geolocation is not supported by this browser.");
+    }
+}
 
-        // Agregar estilos adicionales para animaciones
-        const additionalStyles = document.createElement('style');
-        additionalStyles.textContent = `
+
+// Inicialización completa
+document.addEventListener('DOMContentLoaded', function () {
+    console.log('🔴 CNN Portal cargado correctamente');
+
+    // Renderizar contenido dinámico
+    renderHeroStory(heroStory);
+    renderTopStories(topStories);
+    renderTrendingStories(trendingStories);
+    renderLiveUpdates(liveUpdates);
+    renderVideos(featuredVideos);
+
+    // Configurar todas las funcionalidades
+    updateTime();
+    setupPicoYPlaca(); // Configurar Pico y Placa
+    fetchUserWeather(); // Obtener clima del usuario (y auto-seleccionar ciudad de PyP)
+    setupAdvancedSearch();
+    setupSmoothScrolling();
+    setupContentLazyLoading();
+    startLiveUpdates();
+
+    // Actualizar hora cada minuto
+    setInterval(updateTime, 60000);
+
+    // Mostrar bienvenida
+    setTimeout(() => {
+        showNotification('🔴 Conectado a DNA en vivo - Noticias actualizándose automáticamente', 'success');
+    }, 1500);
+
+    // Agregar efectos de fade-in
+    setTimeout(() => {
+        document.querySelectorAll('.story-card, .sidebar-widget').forEach((el, index) => {
+            setTimeout(() => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'all 0.6s ease-out';
+
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, 100);
+            }, index * 100);
+        });
+    }, 500);
+});
+
+// Agregar estilos adicionales para animaciones
+const additionalStyles = document.createElement('style');
+additionalStyles.textContent = `
             .fade-in {
                 animation: fadeInUp 0.6s ease-out;
             }
@@ -438,4 +597,4 @@ function renderVideos(videos) {
                 100% { background-position: -200% 0; }
             }
         `;
-        document.head.appendChild(additionalStyles);
+document.head.appendChild(additionalStyles);
