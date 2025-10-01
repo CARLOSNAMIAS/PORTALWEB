@@ -320,6 +320,19 @@ body {
     /* Centrado horizontal */
     padding: 0 2rem;
     /* Espaciado lateral */
+    display: flex; /* Añadido para alinear el menú y la hamburguesa */
+    justify-content: space-between; /* Añadido */
+    align-items: center; /* Añadido */
+}
+
+/* Botón de hamburguesa */
+.hamburger {
+    display: none; /* Oculto por defecto */
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
 }
 
 /* Lista de navegación principal */
@@ -1201,15 +1214,44 @@ body {
         width: 100%;
     }
 
+    .nav-content {
+        padding: 0.5rem 1rem; /* Reducir padding en móvil */
+    }
+
+    .hamburger {
+        display: block; /* Mostrar el botón de hamburguesa */
+    }
+
     .nav-menu {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.5rem;
+        display: none; /* Ocultar el menú por defecto */
+        flex-direction: column;
+        width: 100%;
+        background-color: #000;
+        position: absolute;
+        top: 100%; /* Posicionarlo justo debajo del nav */
+        left: 0;
+        padding: 1rem 0;
+        border-top: 1px solid #333;
+    }
+
+    .nav-menu--open {
+        display: flex; /* Mostrar el menú cuando la clase está presente */
+    }
+
+    .nav-menu li {
+        width: 100%;
+        text-align: center;
     }
 
     .nav-menu a {
-        padding: 0.7rem 1rem;
-        font-size: 0.85rem;
+        padding: 1rem;
+        border-bottom: 1px solid #333; /* Separador entre elementos */
+    }
+
+    .nav-menu a:hover,
+    .nav-menu a.active {
+        background: #cc0000; /* Resaltado más fuerte en móvil */
+        border-bottom-color: #cc0000;
     }
 
     .container {

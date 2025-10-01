@@ -507,6 +507,17 @@ function fetchUserWeather() {
 }
 
 
+function setupHamburgerMenu() {
+    const hamburgerButton = document.getElementById('hamburger-button');
+    const navMenu = document.getElementById('nav-menu');
+
+    if (hamburgerButton && navMenu) {
+        hamburgerButton.addEventListener('click', () => {
+            navMenu.classList.toggle('nav-menu--open');
+        });
+    }
+}
+
 // Inicialización completa
 document.addEventListener('DOMContentLoaded', function () {
     console.log('🔴 CNN Portal cargado correctamente');
@@ -526,6 +537,7 @@ document.addEventListener('DOMContentLoaded', function () {
     setupSmoothScrolling();
     setupContentLazyLoading();
     startLiveUpdates();
+    setupHamburgerMenu(); // <-- AÑADIDO
 
     // Actualizar hora cada minuto
     setInterval(updateTime, 60000);
