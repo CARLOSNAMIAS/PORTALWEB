@@ -522,9 +522,27 @@ function setupHamburgerMenu() {
 document.addEventListener('DOMContentLoaded', function () {
     console.log('🔴 CNN Portal cargado correctamente');
 
-    // Renderizar contenido dinámico
-    renderHeroStory(heroStory);
-    renderTopStories(topStories);
+    // Renderizar contenido dinámico desde la API
+    fetch('/api/get-news')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Error HTTP: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            renderHeroStory(data.heroStory);
+            renderTopStories(data.topStories);
+        })
+        .catch(error => {
+            console.error("Error al cargar noticias desde la API:", error);
+            showNotification('No se pudieron cargar las noticias.', 'error');
+            // Opcional: como respaldo, cargar datos estáticos de database.js
+            renderHeroStory(heroStory);
+            renderTopStories(topStories);
+        });
+
+    // El resto del contenido se sigue renderizando de forma estática por ahora
     renderTrendingStories(trendingStories);
     renderLiveUpdates(liveUpdates);
     renderVideos(featuredVideos);
