@@ -926,7 +926,7 @@ body {
 .video-section {
     background: #f8f8f8;
     /* Fondo gris muy claro */
-    margin: 3rem -2rem 0;
+    margin: 3rem 0 0;
     /* Margen negativo para extender a los bordes */
     padding: 3rem 2rem;
     /* Espaciado interno generoso */

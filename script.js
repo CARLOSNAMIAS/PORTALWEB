@@ -1,3 +1,4 @@
+
 // Función para actualizar la hora actual
 function updateTime() {
     const now = new Date();
@@ -11,43 +12,25 @@ function updateTime() {
 
 // Función para cambiar categorías
 function showCategory(category) {
-    // Actualizar navegación activa
     document.querySelectorAll('.nav-menu a').forEach(link => {
         link.classList.remove('active');
     });
-
-    // Simular carga de contenido por categoría
     showNotification(`Cargando noticias de ${category.toUpperCase()}...`, 'info');
-
-    // En una implementación real, aquí cargarías contenido específico
     setTimeout(() => {
         showNotification(`Noticias de ${category} actualizadas`, 'success');
     }, 1000);
 }
 
-
-
-
-
 // Función para suscripción al boletín
 function subscribeNewsletter() {
     const emailInput = event.target.previousElementSibling;
     const email = emailInput.value.trim();
-
-    if (!email) {
-        showNotification('Por favor ingresa tu email', 'error');
-        return;
-    }
-
-    if (!email.includes('@') || !email.includes('.')) {
+    if (!email || !email.includes('@') || !email.includes('.')) {
         showNotification('Por favor ingresa un email válido', 'error');
         return;
     }
-
-    // Simular suscripción
     event.target.textContent = 'SUSCRIBIENDO...';
     event.target.disabled = true;
-
     setTimeout(() => {
         showNotification(`¡Suscripción exitosa! Recibirás noticias en ${email}`, 'success');
         emailInput.value = '';
@@ -56,22 +39,9 @@ function subscribeNewsletter() {
     }, 2000);
 }
 
-// Función de búsqueda mejorada
+// --- FUNCIONES DE BÚSQUEDA ---
 function setupAdvancedSearch() {
     const searchBox = document.querySelector('.search-box');
-    let searchTimeout;
-
-    searchBox.addEventListener('input', function () {
-        clearTimeout(searchTimeout);
-        const query = this.value.trim();
-
-        if (query.length > 2) {
-            searchTimeout = setTimeout(() => {
-                showSearchSuggestions(query);
-            }, 300);
-        }
-    });
-
     searchBox.addEventListener('keypress', function (e) {
         if (e.key === 'Enter') {
             const query = this.value.trim();
@@ -82,134 +52,63 @@ function setupAdvancedSearch() {
     });
 }
 
-// Función para mostrar sugerencias de búsqueda
-function showSearchSuggestions(query) {
-    // En una implementación real, esto haría una llamada a la API
-    console.log(`Buscando sugerencias para: ${query}`);
-}
-
-// Función para realizar búsqueda
-function performSearch(query) {
-    showNotification(`Buscando: "${query}"...`, 'info');
-
-    // Simular búsqueda
-    setTimeout(() => {
-        alert(`🔍 Resultados de búsqueda para: "${query}"\n\nEn una implementación real mostraría:\n• Artículos relacionados\n• Videos\n• Imágenes\n• Filtros por fecha y categoría\n• Ordenamiento por relevancia`);
-        document.querySelector('.search-box').value = '';
-    }, 1000);
-}
-
-// Sistema de notificaciones mejorado
-function showNotification(message, type = 'info') {
-    // Remover notificación existente si hay una
-    const existingNotification = document.querySelector('.notification');
-    if (existingNotification) {
-        existingNotification.remove();
+function updateSectionTitle(title) {
+    const sectionTitle = document.querySelector('.top-stories .section-title');
+    if (sectionTitle) {
+        sectionTitle.textContent = title;
     }
+}
 
+async function performSearch(query) {
+    showNotification(`Buscando: "${query}"...`, 'info');
+    document.querySelector('.search-box').value = '';
+    try {
+        const response = await fetch(`/api/search-news?q=${encodeURIComponent(query)}`);
+        if (!response.ok) throw new Error('Error en la respuesta del servidor');
+        const data = await response.json();
+        if (data.topStories && data.topStories.length > 0) {
+            renderHeroStory(data.heroStory);
+            renderTopStories(data.topStories);
+            updateSectionTitle(`Resultados para: "${query}"`);
+            showNotification('Búsqueda completada', 'success');
+        } else {
+            document.querySelector('.hero-section').innerHTML = '';
+            document.querySelector('.stories-grid').innerHTML = '<p style="grid-column: 1 / -1;">No se encontraron artículos para su búsqueda.</p>';
+            updateSectionTitle(`No hay resultados para: "${query}"`);
+            showNotification('No se encontraron noticias', 'warning');
+        }
+    } catch (error) {
+        console.error('Error en la búsqueda:', error);
+        showNotification('Ocurrió un error al realizar la búsqueda', 'error');
+    }
+}
+
+// --- SISTEMA DE NOTIFICACIONES ---
+function showNotification(message, type = 'info') {
+    const existingNotification = document.querySelector('.notification');
+    if (existingNotification) existingNotification.remove();
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
-
-    const colors = {
-        success: '#27ae60',
-        error: '#e74c3c',
-        info: '#3498db',
-        warning: '#f39c12'
-    };
-
-    notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: ${colors[type]};
-                color: white;
-                padding: 1rem 2rem;
-                border-radius: 8px;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-                z-index: 10000;
-                font-weight: 600;
-                font-size: 0.9rem;
-                transform: translateX(100%);
-                transition: transform 0.3s ease-out;
-                max-width: 400px;
-            `;
-
+    const colors = { success: '#27ae60', error: '#e74c3c', info: '#3498db', warning: '#f39c12' };
+    notification.style.cssText = `position: fixed; top: 20px; right: 20px; background: ${colors[type]}; color: white; padding: 1rem 2rem; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); z-index: 10000; font-weight: 600; font-size: 0.9rem; transform: translateX(100%); transition: transform 0.3s ease-out; max-width: 400px;`;
     notification.textContent = message;
     document.body.appendChild(notification);
-
-    // Animar entrada
-    setTimeout(() => {
-        notification.style.transform = 'translateX(0)';
-    }, 10);
-
-    // Remover después de 4 segundos
+    setTimeout(() => { notification.style.transform = 'translateX(0)'; }, 10);
     setTimeout(() => {
         notification.style.transform = 'translateX(100%)';
-        setTimeout(() => {
-            if (document.body.contains(notification)) {
-                document.body.removeChild(notification);
-            }
-        }, 300);
+        setTimeout(() => { if (document.body.contains(notification)) document.body.removeChild(notification); }, 300);
     }, 4000);
 }
 
-// Función para scroll suave mejorado
-function setupSmoothScrolling() {
-    // Detectar scroll para efectos
-    let ticking = false;
-
-    function updateOnScroll() {
-        const scrolled = window.pageYOffset;
-        const nav = document.querySelector('.nav');
-
-        if (scrolled > 100) {
-            nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
-        } else {
-            nav.style.boxShadow = 'none';
-        }
-
-        ticking = false;
-    }
-
-    window.addEventListener('scroll', () => {
-        if (!ticking) {
-            requestAnimationFrame(updateOnScroll);
-            ticking = true;
-        }
-    });
-}
-
-// Función para lazy loading de contenido
-function setupContentLazyLoading() {
-    const observerOptions = {
-        root: null,
-        rootMargin: '50px',
-        threshold: 0.1
-    };
-
-    const contentObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('fade-in');
-                contentObserver.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    // Observar elementos que necesitan lazy loading
-    document.querySelectorAll('.story-card, .video-card').forEach(card => {
-        contentObserver.observe(card);
-    });
-}
-
-
-
-// --- FUNCIONES DE RENDERIZADO DINÁMICO ---
-
+// --- FUNCIONES DE RENDERIZADO ---
 function renderHeroStory(story) {
     const heroSection = document.querySelector('.hero-section');
+    if (!story) {
+        heroSection.innerHTML = '';
+        return;
+    }
     heroSection.innerHTML = `
-        <a href="${story.url}" style="text-decoration: none; color: inherit;">
+        <a href="${story.url}" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
             <article class="hero-story">
                 <div class="hero-image" style="background-image: url('${story.image}');">
                     <div class="hero-overlay">
@@ -234,11 +133,9 @@ function renderTopStories(stories) {
     let storiesHtml = stories.map(story => {
         const imageHtml = `<img src="${story.image}" alt="${story.alt}" style="width: 100%; height: 100%; object-fit: cover;">`;
         return `
-        <a href="${story.url}" style="text-decoration: none; color: inherit;">
+        <a href="${story.url}" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
             <article class="story-card">
-                <div class="story-image">
-                    ${imageHtml}
-                </div>
+                <div class="story-image">${imageHtml}</div>
                 <div class="story-content">
                     <span class="story-category">${story.category}</span>
                     <h3 class="story-title">${story.title}</h3>
@@ -251,29 +148,17 @@ function renderTopStories(stories) {
             </article>
         </a>
     `});
-
-    // Inyectar anuncio después de la segunda noticia
     if (storiesHtml.length > 2) {
-        const adHtml = `
-            <article class="story-card">
-                <div class="ad-placeholder ad-in-feed">
-                    <span>Publicidad</span>
-                </div>
-            </article>
-        `;
+        const adHtml = `<article class="story-card"><div class="ad-placeholder ad-in-feed"><span>Publicidad</span></div></article>`;
         storiesHtml.splice(2, 0, adHtml);
     }
-
     storiesGrid.innerHTML = storiesHtml.join('');
 }
-
-
-
 
 function renderTrendingStories(stories) {
     const trendingList = document.querySelector('.trending-list');
     trendingList.innerHTML = stories.map(story => `
-        <li class="trending-item" onclick="window.location.href='${story.url}'">
+        <li class="trending-item" onclick="window.open('${story.url}', '_blank')">
             <span class="trending-rank">${story.rank}</span>
             <div class="trending-content">
                 <h4>${story.title}</h4>
@@ -286,16 +171,12 @@ function renderTrendingStories(stories) {
 function renderLiveUpdates(updates) {
     const liveUpdatesContainer = document.querySelector('.live-updates');
     const widgetHeader = liveUpdatesContainer.querySelector('.widget-header');
-    liveUpdatesContainer.innerHTML = ''; // Limpiar contenedor
-    liveUpdatesContainer.appendChild(widgetHeader); // Re-agregar el encabezado
-
+    liveUpdatesContainer.innerHTML = '';
+    liveUpdatesContainer.appendChild(widgetHeader);
     updates.forEach(update => {
         const item = document.createElement('div');
         item.className = 'live-item';
-        item.innerHTML = `
-            <div class="live-time">${update.time}</div>
-            <div class="live-text">${update.text}</div>
-        `;
+        item.innerHTML = `<div class="live-time">${update.time}</div><div class="live-text">${update.text}</div>`;
         liveUpdatesContainer.appendChild(item);
     });
 }
@@ -303,10 +184,10 @@ function renderLiveUpdates(updates) {
 function renderVideos(videos) {
     const videoGrid = document.querySelector('.video-grid');
     videoGrid.innerHTML = videos.map(video => `
-        <article class="video-card" onclick="playVideo('${video.title}')">
+        <article class="video-card" onclick="playVideo('${video.url}')">
             <div class="video-thumbnail">
+                <img src="${video.thumbnail}" alt="${video.title}" style="width: 100%; height: 100%; object-fit: cover;">
                 <div class="play-button">▶</div>
-                ${video.thumbnail}
             </div>
             <div class="video-info">
                 <h3 class="video-title">${video.title}</h3>
@@ -316,272 +197,116 @@ function renderVideos(videos) {
     `).join('');
 }
 
+function playVideo(url) {
+    if (url) window.open(url, '_blank');
+}
 
-// --- FUNCIONES DE PICO Y PLACA ---
+// --- FUNCIONES DE OBTENCIÓN DE DATOS ---
+async function fetchNews() {
+    showNotification('Cargando últimas noticias...', 'info');
+    try {
+        const response = await fetch('/api/get-news');
+        if (!response.ok) throw new Error(`Error del servidor: ${response.status}`);
+        const data = await response.json();
+        if (data.heroStory) renderHeroStory(data.heroStory);
+        if (data.topStories) renderTopStories(data.topStories);
+        showNotification('Noticias actualizadas correctamente', 'success');
+    } catch (error) {
+        console.error('Error al obtener noticias:', error);
+        showNotification('No se pudieron cargar las noticias', 'error');
+    }
+}
 
+async function fetchVideos() {
+    try {
+        const response = await fetch('/api/get-videos');
+        const data = await response.json();
+        if (data.videos && data.videos.length > 0) {
+            renderVideos(data.videos);
+        }
+    } catch (error) {
+        console.error('Error fetching videos:', error);
+    }
+}
+
+// --- INICIALIZACIÓN Y UTILIDADES ---
 function setupPicoYPlaca() {
     const citySelector = document.getElementById('pico-y-placa-city-selector');
     const infoContainer = document.getElementById('pico-y-placa-info');
-
-    if (!citySelector || !infoContainer || typeof picoYPlacaData === 'undefined') {
-        console.error("Elementos del DOM de Pico y Placa o los datos no se encontraron.");
-        return;
-    }
-
+    if (!citySelector || !infoContainer || typeof picoYPlacaData === 'undefined') return;
     const cities = Object.keys(picoYPlacaData);
-
-    // 1. Populate city selector
     cities.forEach(city => {
         const option = document.createElement('option');
         option.value = city;
         option.textContent = city;
         citySelector.appendChild(option);
     });
-
-    // 2. Function to update info
     const updatePicoYPlacaInfo = (city) => {
         const data = picoYPlacaData[city];
-        if (!data) {
-            infoContainer.innerHTML = '<p>No hay datos para la ciudad seleccionada.</p>';
-            return;
-        }
-
+        if (!data) return;
         const today = new Date();
-        const dayOfWeek = today.getDay(); // Sunday = 0, Monday = 1, etc.
-        const dayOfMonth = today.getDate();
-
-        const restriccion = data.getRestriccion(dayOfWeek, dayOfMonth);
-
-        infoContainer.innerHTML = `
-            <h5>Hoy en ${city}</h5>
-            <p><strong>Restricción:</strong> ${restriccion}</p>
-            <p><small><strong>Horario:</strong> ${data.horario}</small></p>
-        `;
+        const restriccion = data.getRestriccion(today.getDay(), today.getDate());
+        infoContainer.innerHTML = `<h5>Hoy en ${city}</h5><p><strong>Restricción:</strong> ${restriccion}</p><p><small><strong>Horario:</strong> ${data.horario}</small></p>`;
     };
-
-    // 3. Add event listener
-    citySelector.addEventListener('change', (e) => {
-        updatePicoYPlacaInfo(e.target.value);
-    });
-
-    // 4. Initial update
-    if (cities.length > 0) {
-        updatePicoYPlacaInfo(cities[0]);
-    }
+    citySelector.addEventListener('change', (e) => updatePicoYPlacaInfo(e.target.value));
+    if (cities.length > 0) updatePicoYPlacaInfo(cities[0]);
 }
 
-
-// --- FUNCIONES DE CLIMA ---
-
 function getWeatherIcon(wmoCode) {
-    const icons = {
-        0: '☀️', // Clear sky
-        1: '🌤️', // Mainly clear
-        2: '⛅', // Partly cloudy
-        3: '☁️', // Overcast
-        45: '🌫️', // Fog
-        48: '🌫️', // Depositing rime fog
-        51: '🌦️', // Drizzle: Light
-        53: '🌦️', // Drizzle: Moderate
-        55: '🌦️', // Drizzle: Dense intensity
-        61: '🌧️', // Rain: Slight
-        63: '🌧️', // Rain: Moderate
-        65: '🌧️', // Rain: Heavy intensity
-        66: '🌧️', // Freezing Rain: Light
-        67: '🌧️', // Freezing Rain: Heavy intensity
-        71: '🌨️', // Snow fall: Slight
-        73: '🌨️', // Snow fall: Moderate
-        75: '🌨️', // Snow fall: Heavy intensity
-        77: '🌨️', // Snow grains
-        80: '⛈️', // Rain showers: Slight
-        81: '⛈️', // Rain showers: Moderate
-        82: '⛈️', // Rain showers: Violent
-        85: '🌨️', // Snow showers slight
-        86: '🌨️', // Snow showers heavy
-        95: '🌩️', // Thunderbolt
-        96: '🌩️', // Thunderstorm with slight hail
-        99: '🌩️', // Thunderstorm with heavy hail
-    };
+    const icons = { 0: '☀️', 1: '🌤️', 2: '⛅', 3: '☁️', 45: '🌫️', 48: '🌫️', 51: '🌦️', 53: '🌦️', 55: '🌦️', 61: '🌧️', 63: '🌧️', 65: '🌧️', 66: '🌧️', 67: '🌧️', 71: '🌨️', 73: '🌨️', 75: '🌨️', 77: '🌨️', 80: '⛈️', 81: '⛈️', 82: '⛈️', 85: '🌨️', 86: '🌨️', 95: '🌩️', 96: '🌩️', 99: '🌩️' };
     return icons[wmoCode] || '🤷';
 }
 
 function fetchUserWeather() {
-    if ('geolocation' in navigator) {
-        navigator.geolocation.getCurrentPosition(async (position) => {
+    if (!('geolocation' in navigator)) return;
+    navigator.geolocation.getCurrentPosition(async (position) => {
+        try {
             const { latitude, longitude } = position.coords;
-
-            try {
-                const [weatherResponse, geoResponse] = await Promise.all([
-                    fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`),
-                    fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=es`)
-                ]);
-
-                if (!weatherResponse.ok || !geoResponse.ok) {
-                    throw new Error('Failed to fetch data');
+            const [weatherResponse, geoResponse] = await Promise.all([
+                fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`),
+                fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=es`)
+            ]);
+            if (!weatherResponse.ok || !geoResponse.ok) throw new Error('Failed to fetch data');
+            const weatherData = await weatherResponse.json();
+            const geoData = await geoResponse.json();
+            const locationElement = document.getElementById('location');
+            const weatherElement = document.getElementById('weather');
+            const city = geoData.city || geoData.locality || 'Ubicación desconocida';
+            const temperature = Math.round(weatherData.current_weather.temperature);
+            const icon = getWeatherIcon(weatherData.current_weather.weathercode);
+            if (locationElement) locationElement.textContent = `📍 ${city}, ${geoData.countryName || ''}`;
+            if (weatherElement) weatherElement.textContent = `${icon} ${temperature}°C`;
+            if (city && typeof picoYPlacaData !== 'undefined' && picoYPlacaData[city]) {
+                const citySelector = document.getElementById('pico-y-placa-city-selector');
+                if (citySelector) {
+                    citySelector.value = city;
+                    citySelector.dispatchEvent(new Event('change'));
                 }
-
-                const weatherData = await weatherResponse.json();
-                const geoData = await geoResponse.json();
-
-                const locationElement = document.getElementById('location');
-                const weatherElement = document.getElementById('weather');
-
-                const city = geoData.city || geoData.locality || 'Ubicación desconocida';
-                const country = geoData.countryName || '';
-                const temperature = Math.round(weatherData.current_weather.temperature);
-                const weatherCode = weatherData.current_weather.weathercode;
-                const icon = getWeatherIcon(weatherCode);
-
-                if (locationElement) locationElement.textContent = `📍 ${city}, ${country}`;
-                if (weatherElement) weatherElement.textContent = `${icon} ${temperature}°C`;
-
-                // Auto-select Pico y Placa city
-                if (city && typeof picoYPlacaData !== 'undefined' && picoYPlacaData[city]) {
-                    const citySelector = document.getElementById('pico-y-placa-city-selector');
-                    if (citySelector) {
-                        citySelector.value = city;
-                        citySelector.dispatchEvent(new Event('change'));
-                    }
-                }
-
-            } catch (error) {
-                console.error("Error fetching weather or location data:", error);
             }
-        }, (error) => {
-            console.error("Error getting geolocation:", error.message);
-        });
-    } else {
-        console.log("Geolocation is not supported by this browser.");
-    }
+        } catch (error) {
+            console.error("Error fetching weather or location data:", error);
+        }
+    });
 }
-
 
 function setupHamburgerMenu() {
     const hamburgerButton = document.getElementById('hamburger-button');
     const navMenu = document.getElementById('nav-menu');
-
     if (hamburgerButton && navMenu) {
-        hamburgerButton.addEventListener('click', () => {
-            navMenu.classList.toggle('nav-menu--open');
-        });
+        hamburgerButton.addEventListener('click', () => navMenu.classList.toggle('nav-menu--open'));
     }
 }
 
-// --- FUNCIÓN PARA OBTENER NOTICIAS DE LA API ---
-
-async function fetchNews() {
-    showNotification('Cargando últimas noticias...', 'info');
-    try {
-        const response = await fetch('/api/get-news');
-        if (!response.ok) {
-            throw new Error(`Error del servidor: ${response.status}`);
-        }
-        const data = await response.json();
-
-        // Renderizar el contenido de la API
-        if (data.heroStory) {
-            renderHeroStory(data.heroStory);
-        }
-        if (data.topStories) {
-            renderTopStories(data.topStories);
-        }
-
-        showNotification('Noticias actualizadas correctamente', 'success');
-
-    } catch (error) {
-        console.error('Error al obtener noticias:', error);
-        showNotification('No se pudieron cargar las noticias', 'error');
-        // Opcional: renderizar contenido estático como fallback
-        // renderHeroStory(heroStory);
-        // renderTopStories(topStories);
-    }
-}
-
-
-// Inicialización completa
 document.addEventListener('DOMContentLoaded', function () {
     console.log('🔴 NDA Noticias cargado correctamente');
-
-    // Cargar noticias dinámicas desde la API
     fetchNews();
-
-    // Renderizar contenido estático de las otras secciones
+    fetchVideos();
     renderTrendingStories(trendingStories);
     renderLiveUpdates(liveUpdates);
-    renderVideos(featuredVideos);
-
-    // Configurar todas las funcionalidades
     updateTime();
-    setupPicoYPlaca(); // Configurar Pico y Placa
-    fetchUserWeather(); // Obtener clima del usuario (y auto-seleccionar ciudad de PyP)
+    setupPicoYPlaca();
+    fetchUserWeather();
     setupAdvancedSearch();
-    setupSmoothScrolling();
-    setupContentLazyLoading();
     setupHamburgerMenu();
-
-    // Actualizar hora cada minuto
     setInterval(updateTime, 60000);
-
-    // Agregar efectos de fade-in
-    setTimeout(() => {
-        document.querySelectorAll('.story-card, .sidebar-widget').forEach((el, index) => {
-            setTimeout(() => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(20px)';
-                el.style.transition = 'all 0.6s ease-out';
-
-                setTimeout(() => {
-                    el.style.opacity = '1';
-                    el.style.transform = 'translateY(0)';
-                }, 100);
-            }, index * 100);
-        });
-    }, 500);
 });
-
-// Agregar estilos adicionales para animaciones
-const additionalStyles = document.createElement('style');
-additionalStyles.textContent = `
-            .fade-in {
-                animation: fadeInUp 0.6s ease-out;
-            }
-            
-            @keyframes fadeInUp {
-                from {
-                    opacity: 0;
-                    transform: translateY(30px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
-            
-            /* Hover effects mejorados */
-            .story-card:hover .story-title {
-                color: #cc0000;
-            }
-            
-            .trending-item:hover .trending-rank {
-                background: #990000;
-                transform: scale(1.1);
-            }
-            
-            .hero-story:hover {
-                transform: scale(1.02);
-                transition: transform 0.3s ease-out;
-            }
-            
-            /* Loading states */
-            .loading-skeleton {
-                background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-                background-size: 200% 100%;
-                animation: shimmer 1.5s infinite;
-            }
-            
-            @keyframes shimmer {
-                0% { background-position: 200% 0; }
-                100% { background-position: -200% 0; }
-            }
-        `;
-document.head.appendChild(additionalStyles);
