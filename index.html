@@ -71,11 +71,7 @@
     <!-- BANNER DE NOTICIAS DE ÚLTIMA HORA -->
     <div class="breaking-banner">
       <p>
-        🚨 ÚLTIMA HORA: "Nuestro portal de noticias se encuentra en proceso de
-        desarrollo. Próximamente será puesto a disposición del público con el
-        firme compromiso de ofrecer información veraz, oportuna y confiable,
-        reafirmando nuestra responsabilidad con la transparencia y el servicio a
-        nuestros usuarios."
+        Bienvenido a NDA Noticias, tu fuente confiable para mantenerte informado sobre Colombia y el mundo.
       </p>
     </div>
 
@@ -142,7 +138,15 @@
     <div class="container">
       <main>
         <section class="hero-section">
-          <!-- Contenido dinámico -->
+          <div class="skeleton-hero">
+            <div class="skeleton skeleton-image"></div>
+            <div class="skeleton-content">
+              <div class="skeleton skeleton-text skeleton-category"></div>
+              <div class="skeleton skeleton-text skeleton-title"></div>
+              <div class="skeleton skeleton-text skeleton-summary"></div>
+              <div class="skeleton skeleton-text skeleton-summary"></div>
+            </div>
+          </div>
         </section>
 
         <section class="top-stories">
@@ -151,7 +155,30 @@
             <div class="section-line"></div>
           </div>
           <div class="stories-grid">
-            <!-- Contenido dinámico -->
+            <article class="skeleton-card">
+              <div class="skeleton skeleton-image"></div>
+              <div class="story-content">
+                <div class="skeleton skeleton-text skeleton-category"></div>
+                <div class="skeleton skeleton-text skeleton-title"></div>
+                <div class="skeleton skeleton-text skeleton-summary"></div>
+              </div>
+            </article>
+            <article class="skeleton-card">
+              <div class="skeleton skeleton-image"></div>
+              <div class="story-content">
+                <div class="skeleton skeleton-text skeleton-category"></div>
+                <div class="skeleton skeleton-text skeleton-title"></div>
+                <div class="skeleton skeleton-text skeleton-summary"></div>
+              </div>
+            </article>
+            <article class="skeleton-card">
+              <div class="skeleton skeleton-image"></div>
+              <div class="story-content">
+                <div class="skeleton skeleton-text skeleton-category"></div>
+                <div class="skeleton skeleton-text skeleton-title"></div>
+                <div class="skeleton skeleton-text skeleton-summary"></div>
+              </div>
+            </article>
           </div>
         </section>
       </main>
@@ -162,7 +189,7 @@
             <span class="widget-header-icon">🔴</span>
             <h3 class="widget-title">Actualizaciones en Vivo</h3>
           </div>
-          <!-- Contenido dinámico -->
+          <!-- Contenido se llenará con JS -->
         </div>
 
         <div class="sidebar-widget">
@@ -171,7 +198,7 @@
             <h3 class="widget-title">Tendencias</h3>
           </div>
           <ul class="trending-list">
-            <!-- Contenido dinámico -->
+            <!-- Contenido se llenará con JS -->
           </ul>
         </div>
 
@@ -240,7 +267,7 @@
           <div class="section-line"></div>
         </div>
         <div class="video-grid">
-          <!-- Contenido dinámico -->
+          <!-- Contenido se llenará con JS -->
         </div>
       </div>
     </section>
@@ -305,12 +332,12 @@
         <div class="footer-section">
           <h3>Información</h3>
           <ul>
-            <li><a href="#">Acerca de NDA</a></li>
-            <li><a href="#">Carreras</a></li>
-            <li><a href="#">Publicidad</a></li>
-            <li><a href="#">Contacto</a></li>
+            <li><a href="about.html">Acerca de NDA</a></li>
+            <li><a href="contact.html">Contacto</a></li>
+            <li><a href="privacy.html">Política de privacidad</a></li>
             <li><a href="#">Términos de uso</a></li>
-            <li><a href="#">Política de privacidad</a></li>
+            <li><a href="#">Publicidad</a></li>
+            <li><a href="#">Carreras</a></li>
           </ul>
         </div>
       </div>
@@ -326,7 +353,9 @@
       </div>
     </footer>
 
-    <script src="database.js"></script>
+
+    <script src="static-content.js"></script>
+    <script src="pico-y-placa.js"></script>
     <script src="script.js"></script>
     <!-- Simple Analytics para estadísticas (respeta la privacidad) -->
     <script

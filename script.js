@@ -25,23 +25,9 @@ function showCategory(category) {
     }, 1000);
 }
 
-// Función para abrir artículos
-function openArticle(title) {
-    showNotification('Abriendo artículo...', 'info');
 
-    setTimeout(() => {
-        alert(`📰 ${title}\n\nEn una implementación real, esto abriría el artículo completo con:\n• Contenido completo del artículo\n• Galería de imágenes\n• Videos relacionados\n• Comentarios de lectores\n• Artículos relacionados\n• Opciones para compartir`);
-    }, 500);
-}
 
-// Función para reproducir videos
-function playVideo(title) {
-    showNotification('Cargando reproductor de video...', 'info');
 
-    setTimeout(() => {
-        alert(`🎥 ${title}\n\nEn una implementación real, esto abriría:\n• Reproductor de video integrado\n• Controles de reproducción\n• Subtítulos disponibles\n• Videos relacionados\n• Opciones de calidad\n• Modo pantalla completa`);
-    }, 500);
-}
 
 // Función para suscripción al boletín
 function subscribeNewsletter() {
@@ -216,94 +202,54 @@ function setupContentLazyLoading() {
     });
 }
 
-// Función para simular actualizaciones en tiempo real
-function startLiveUpdates() {
-    const liveContainer = document.querySelector('.live-updates');
-    const updates = [
-        'Presidente anuncia nueva inversión en infraestructura',
-        'Bolsa de valores cierra con tendencia positiva',
-        'Meteorología emite alerta por lluvias intensas',
-        'Ministro de Salud presenta nuevo protocolo sanitario',
-        'Universidad Nacional inaugura centro de investigación'
-    ];
 
-    let updateIndex = 0;
-
-    setInterval(() => {
-        if (liveContainer && updates[updateIndex]) {
-            const now = new Date();
-            const timeString = now.toLocaleTimeString('es-ES', {
-                hour: '2-digit',
-                minute: '2-digit'
-            });
-
-            const newUpdate = document.createElement('div');
-            newUpdate.className = 'live-item';
-            newUpdate.innerHTML = `
-                        <div class="live-time">${timeString}</div>
-                        <div class="live-text">${updates[updateIndex]}</div>
-                    `;
-
-            const firstUpdate = liveContainer.querySelector('.live-item');
-            if (firstUpdate) {
-                liveContainer.insertBefore(newUpdate, firstUpdate);
-            }
-
-            // Mantener solo las últimas 4 actualizaciones
-            const allUpdates = liveContainer.querySelectorAll('.live-item');
-            if (allUpdates.length > 4) {
-                allUpdates[allUpdates.length - 1].remove();
-            }
-
-            updateIndex = (updateIndex + 1) % updates.length;
-        }
-    }, 120000); // Cada 2 minutos
-}
 
 // --- FUNCIONES DE RENDERIZADO DINÁMICO ---
 
 function renderHeroStory(story) {
     const heroSection = document.querySelector('.hero-section');
     heroSection.innerHTML = `
-        <article class="hero-story" onclick="openArticle('${story.title}')">
-            <div class="hero-image">
-                <div class="hero-overlay">
-                    <span class="hero-category">${story.category}</span>
-                    <h1 class="hero-title">${story.title}</h1>
-                    <p class="hero-summary">${story.summary}</p>
-                    <div class="hero-meta">
-                        <span>📝 Por ${story.author}</span>
-                        <span>🕐 ${story.time}</span>
-                        <span>📍 ${story.location}</span>
-                        <span>💬 ${story.comments} comentarios</span>
+        <a href="${story.url}" style="text-decoration: none; color: inherit;">
+            <article class="hero-story">
+                <div class="hero-image" style="background-image: url('${story.image}');">
+                    <div class="hero-overlay">
+                        <span class="hero-category">${story.category}</span>
+                        <h1 class="hero-title">${story.title}</h1>
+                        <p class="hero-summary">${story.summary}</p>
+                        <div class="hero-meta">
+                            <span>📝 Por ${story.author}</span>
+                            <span>🕐 ${story.time}</span>
+                            <span>📍 ${story.location}</span>
+                            <span>💬 ${story.comments} comentarios</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </article>
+            </article>
+        </a>
     `;
 }
 
 function renderTopStories(stories) {
     const storiesGrid = document.querySelector('.stories-grid');
     let storiesHtml = stories.map(story => {
-        const imageHtml = story.image.startsWith('img/')
-            ? `<img src="${story.image}" alt="${story.alt}" style="width: 100%; height: 100%; object-fit: cover;">`
-            : story.image;
+        const imageHtml = `<img src="${story.image}" alt="${story.alt}" style="width: 100%; height: 100%; object-fit: cover;">`;
         return `
-        <article class="story-card" onclick="openArticle('${story.title}')">
-            <div class="story-image">
-                ${imageHtml}
-            </div>
-            <div class="story-content">
-                <span class="story-category">${story.category}</span>
-                <h3 class="story-title">${story.title}</h3>
-                <p class="story-summary">${story.summary}</p>
-                <div class="story-meta">
-                    <span class="story-time">🕐 ${story.time}</span>
-                    <span>👁️ ${story.reads}</span>
+        <a href="${story.url}" style="text-decoration: none; color: inherit;">
+            <article class="story-card">
+                <div class="story-image">
+                    ${imageHtml}
                 </div>
-            </div>
-        </article>
+                <div class="story-content">
+                    <span class="story-category">${story.category}</span>
+                    <h3 class="story-title">${story.title}</h3>
+                    <p class="story-summary">${story.summary}</p>
+                    <div class="story-meta">
+                        <span class="story-time">🕐 ${story.time}</span>
+                        <span>👁️ ${story.reads}</span>
+                    </div>
+                </div>
+            </article>
+        </a>
     `});
 
     // Inyectar anuncio después de la segunda noticia
@@ -321,10 +267,13 @@ function renderTopStories(stories) {
     storiesGrid.innerHTML = storiesHtml.join('');
 }
 
+
+
+
 function renderTrendingStories(stories) {
     const trendingList = document.querySelector('.trending-list');
     trendingList.innerHTML = stories.map(story => `
-        <li class="trending-item" onclick="openArticle('${story.title}')">
+        <li class="trending-item" onclick="window.location.href='${story.url}'">
             <span class="trending-rank">${story.rank}</span>
             <div class="trending-content">
                 <h4>${story.title}</h4>
@@ -518,31 +467,45 @@ function setupHamburgerMenu() {
     }
 }
 
+// --- FUNCIÓN PARA OBTENER NOTICIAS DE LA API ---
+
+async function fetchNews() {
+    showNotification('Cargando últimas noticias...', 'info');
+    try {
+        const response = await fetch('/api/get-news');
+        if (!response.ok) {
+            throw new Error(`Error del servidor: ${response.status}`);
+        }
+        const data = await response.json();
+
+        // Renderizar el contenido de la API
+        if (data.heroStory) {
+            renderHeroStory(data.heroStory);
+        }
+        if (data.topStories) {
+            renderTopStories(data.topStories);
+        }
+
+        showNotification('Noticias actualizadas correctamente', 'success');
+
+    } catch (error) {
+        console.error('Error al obtener noticias:', error);
+        showNotification('No se pudieron cargar las noticias', 'error');
+        // Opcional: renderizar contenido estático como fallback
+        // renderHeroStory(heroStory);
+        // renderTopStories(topStories);
+    }
+}
+
+
 // Inicialización completa
 document.addEventListener('DOMContentLoaded', function () {
-    console.log('🔴 CNN Portal cargado correctamente');
+    console.log('🔴 NDA Noticias cargado correctamente');
 
-    // Renderizar contenido dinámico desde la API
-    fetch('/api/get-news')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Error HTTP: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            renderHeroStory(data.heroStory);
-            renderTopStories(data.topStories);
-        })
-        .catch(error => {
-            console.error("Error al cargar noticias desde la API:", error);
-            showNotification('No se pudieron cargar las noticias.', 'error');
-            // Opcional: como respaldo, cargar datos estáticos de database.js
-            renderHeroStory(heroStory);
-            renderTopStories(topStories);
-        });
+    // Cargar noticias dinámicas desde la API
+    fetchNews();
 
-    // El resto del contenido se sigue renderizando de forma estática por ahora
+    // Renderizar contenido estático de las otras secciones
     renderTrendingStories(trendingStories);
     renderLiveUpdates(liveUpdates);
     renderVideos(featuredVideos);
@@ -554,16 +517,10 @@ document.addEventListener('DOMContentLoaded', function () {
     setupAdvancedSearch();
     setupSmoothScrolling();
     setupContentLazyLoading();
-    startLiveUpdates();
-    setupHamburgerMenu(); // <-- AÑADIDO
+    setupHamburgerMenu();
 
     // Actualizar hora cada minuto
     setInterval(updateTime, 60000);
-
-    // Mostrar bienvenida
-    setTimeout(() => {
-        showNotification('🔴 Conectado a DNA en vivo - Noticias actualizándose automáticamente', 'success');
-    }, 1500);
 
     // Agregar efectos de fade-in
     setTimeout(() => {

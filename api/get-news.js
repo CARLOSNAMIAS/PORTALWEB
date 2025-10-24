@@ -22,13 +22,16 @@ export default async function handler(request, response) {
 
     // Mapear la respuesta de GNews a la estructura que el frontend espera
     const heroStory = {
+      image: newsData.articles[0].image,
       category: newsData.articles[0].source.name || 'Noticias',
       title: newsData.articles[0].title,
       summary: newsData.articles[0].description,
       author: newsData.articles[0].source.name || 'Desconocido',
       time: new Date(newsData.articles[0].publishedAt).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' }),
       location: 'Colombia', // GNews no provee ubicación detallada
-      comments: Math.floor(Math.random() * 1000) + 50 // Dato simulado
+      comments: Math.floor(Math.random() * 1000) + 50, // Dato simulado
+      url: newsData.articles[0].url
+
     };
 
     const topStories = newsData.articles.slice(1, 5).map(article => ({
