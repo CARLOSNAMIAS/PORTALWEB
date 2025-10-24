@@ -308,5 +308,164 @@ document.addEventListener('DOMContentLoaded', function () {
     fetchUserWeather();
     setupAdvancedSearch();
     setupHamburgerMenu();
+    setupRadioPlayer(); // <-- AÑADIDO: Inicializar el reproductor de radio
     setInterval(updateTime, 60000);
 });
+
+// --- REPRODUCTOR DE RADIO ---
+
+function setupRadioPlayer() {
+    // Referencias a los elementos del DOM
+    const radioPlayer = document.getElementById('radio-player');
+    const radioPlayerButton = document.getElementById('radio-player-button');
+    const closePlayerButton = document.getElementById('close-player');
+    const playPauseButton = document.getElementById('play-pause');
+    const playPauseIcon = playPauseButton.querySelector('i');
+    const nextButton = document.getElementById('next-station');
+    const prevButton = document.getElementById('prev-station');
+    const volumeSlider = document.getElementById('volume-slider');
+    const volumeIcon = document.getElementById('volume-icon');
+    const stationName = document.getElementById('station-name');
+    const stationFavicon = document.getElementById('station-favicon');
+    const audioStream = document.getElementById('audio-stream');
+
+    // Estado del reproductor
+    let stations = [];
+    let currentStationIndex = 0;
+    let isPlaying = false;
+    let isDataLoaded = false;
+
+    // --- FUNCIONES DE LA API ---
+
+    async function fetchStations() {
+        showNotification('Cargando emisoras...', 'info');
+        try {
+            const response = await fetch('/api/get-radios');
+            if (!response.ok) throw new Error('La respuesta de la red no fue correcta');
+            const data = await response.json();
+            
+            if (data.stations && data.stations.length > 0) {
+                stations = data.stations;
+                isDataLoaded = true;
+                loadStation(currentStationIndex);
+                showNotification('Emisoras cargadas', 'success');
+            } else {
+                showNotification('No se encontraron emisoras', 'warning');
+                stationName.textContent = 'No hay emisoras disponibles';
+            }
+        } catch (error) {
+            console.error("Error al obtener las emisoras:", error);
+            showNotification('Error al cargar emisoras', 'error');
+            stationName.textContent = 'Error al cargar';
+        }
+    }
+
+    // --- FUNCIONES DEL REPRODUCTOR ---
+
+    function loadStation(index) {
+        if (stations.length === 0) return;
+        const station = stations[index];
+        stationName.textContent = station.name;
+        stationFavicon.src = station.favicon || 'img/favicon.svg';
+        stationFavicon.onerror = () => { stationFavicon.src = 'img/favicon.svg'; }; // Fallback si el favicon falla
+        audioStream.src = station.streamUrl;
+        
+        // Si el reproductor ya estaba sonando, intenta reproducir la nueva emisora
+        if (isPlaying) {
+            playAudio();
+        }
+    }
+
+    function playAudio() {
+        audioStream.play().then(() => {
+            isPlaying = true;
+            updatePlayPauseIcon();
+        }).catch(error => {
+            console.error("Error al reproducir audio:", error);
+            showNotification('No se pudo reproducir la emisora.', 'error');
+            isPlaying = false;
+            updatePlayPauseIcon();
+        });
+    }
+
+    function pauseAudio() {
+        audioStream.pause();
+        isPlaying = false;
+        updatePlayPauseIcon();
+    }
+
+    function togglePlayPause() {
+        if (isPlaying) {
+            pauseAudio();
+        } else {
+            playAudio();
+        }
+    }
+
+    function updatePlayPauseIcon() {
+        playPauseIcon.classList.toggle('bi-play-fill', !isPlaying);
+        playPauseIcon.classList.toggle('bi-pause-fill', isPlaying);
+    }
+
+    function playNext() {
+        if (stations.length === 0) return;
+        currentStationIndex = (currentStationIndex + 1) % stations.length;
+        loadStation(currentStationIndex);
+    }
+
+    function playPrev() {
+        if (stations.length === 0) return;
+        currentStationIndex = (currentStationIndex - 1 + stations.length) % stations.length;
+        loadStation(currentStationIndex);
+    }
+
+    function updateVolume() {
+        audioStream.volume = volumeSlider.value;
+        updateVolumeIcon();
+    }
+
+    function updateVolumeIcon() {
+        if (volumeSlider.value == 0) {
+            volumeIcon.className = 'bi bi-volume-mute-fill';
+        } else if (volumeSlider.value < 0.5) {
+            volumeIcon.className = 'bi bi-volume-down-fill';
+        } else {
+            volumeIcon.className = 'bi bi-volume-up-fill';
+        }
+    }
+
+    function togglePlayerVisibility() {
+        const isVisible = radioPlayer.classList.toggle('visible');
+        if (isVisible && !isDataLoaded) {
+            fetchStations();
+        }
+    }
+
+    // --- EVENT LISTENERS ---
+
+    radioPlayerButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        togglePlayerVisibility();
+    });
+
+    closePlayerButton.addEventListener('click', () => radioPlayer.classList.remove('visible'));
+    playPauseButton.addEventListener('click', togglePlayPause);
+    nextButton.addEventListener('click', playNext);
+    prevButton.addEventListener('click', playPrev);
+    volumeSlider.addEventListener('input', updateVolume);
+
+    // Sincronizar UI con el estado real del audio
+    audioStream.addEventListener('play', () => {
+        isPlaying = true;
+        updatePlayPauseIcon();
+    });
+
+    audioStream.addEventListener('pause', () => {
+        isPlaying = false;
+        updatePlayPauseIcon();
+    });
+
+    // Inicializar volumen
+    updateVolume();
+}
+
