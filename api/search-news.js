@@ -10,7 +10,7 @@ export default async function handler(request, response) {
     return response.status(400).json({ error: 'El término de búsqueda es requerido' });
   }
 
-  const apiKey = 'a895210f770b6ab78056d679cd5887c4';
+  const apiKey = process.env.GNEWS_API_KEY;
   // Usar el término de búsqueda del usuario en la URL de la API de GNews
   const apiUrl = `https://gnews.io/api/v4/search?q=${encodeURIComponent(searchQuery)}&lang=es&max=10&token=${apiKey}`;
 

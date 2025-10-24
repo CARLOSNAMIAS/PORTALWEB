@@ -2,7 +2,7 @@
 // api/get-videos.js
 
 export default async function handler(request, response) {
-  const apiKey = 'a895210f770b6ab78056d679cd5887c4';
+  const apiKey = process.env.GNEWS_API_KEY;
   // Búsqueda específica para artículos que probablemente contengan videos.
   const searchQuery = 'colombia (video OR reportaje OR entrevista)';
   const apiUrl = `https://gnews.io/api/v4/search?q=${encodeURIComponent(searchQuery)}&lang=es&max=6&token=${apiKey}`;
