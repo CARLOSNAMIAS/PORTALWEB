@@ -7,17 +7,33 @@
  */
 export default async function handler(request, response) {
   const apiKey = 'a895210f770b6ab78056d679cd5887c4';
-  const apiUrl = `https://gnews.io/api/v4/search?q=colombia&lang=es&max=10&token=${apiKey}`;
+  const FETCH_TIMEOUT = 8000; // 8 seconds timeout for external API calls
 
   try {
-    const newsResponse = await fetch(apiUrl);
+    const apiUrl = `https://gnews.io/api/v4/search?q=colombia&lang=es&max=10&token=${apiKey}`;
+
+    const newsController = new AbortController();
+    const newsTimeoutId = setTimeout(() => newsController.abort(), FETCH_TIMEOUT);
+
+    let newsResponse;
+    try {
+      newsResponse = await fetch(apiUrl, { signal: newsController.signal });
+    } catch (error) {
+      if (error.name === 'AbortError') {
+        throw new Error('Timeout fetching news from GNews API.');
+      }
+      throw error; // Re-throw other fetch errors
+    } finally {
+      clearTimeout(newsTimeoutId);
+    }
+
     if (!newsResponse.ok) {
-      throw new Error(`GNews API responded with status: ${newsResponse.status}`);
+      throw new Error(`GNews API responded with status: ${newsResponse.status} ${newsResponse.statusText}`);
     }
     const newsData = await newsResponse.json();
 
     if (!newsData.articles || newsData.articles.length === 0) {
-      throw new Error('No articles found in GNews response');
+      throw new Error('No articles found in GNews response or API returned empty.');
     }
 
     // Mapear la respuesta de GNews a la estructura que el frontend espera
@@ -31,7 +47,6 @@ export default async function handler(request, response) {
       location: 'Colombia', // GNews no provee ubicación detallada
       comments: Math.floor(Math.random() * 1000) + 50, // Dato simulado
       url: newsData.articles[0].url
-
     };
 
     const topStories = newsData.articles.slice(1, 9).map(article => ({
@@ -50,14 +65,16 @@ export default async function handler(request, response) {
       topStories
     };
 
+    // Set cache headers for Vercel's Edge Network (cache for 5 minutes)
+    response.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate');
     // Configuramos la cabecera para indicar que la respuesta es JSON
     response.setHeader('Content-Type', 'application/json');
     // Enviamos una respuesta exitosa (código 200) con los datos de GNews
     response.status(200).json(responseData);
 
   } catch (error) {
-    console.error('Error fetching news from GNews:', error);
-    // En caso de error, devolver una respuesta de error
-    response.status(500).json({ error: 'Failed to fetch news' });
+    console.error('Error in get-news serverless function:', error.message);
+    // En caso de error, devolver una respuesta de error más específica
+    response.status(500).json({ error: `Failed to fetch news: ${error.message || 'Unknown error'}` });
   }
 }
