@@ -38,6 +38,8 @@ export default async function handler(request, response) {
         favicon: station.favicon || null // Use station icon or null
       }));
 
+    // Set cache headers for Vercel's Edge Network (cache for 1 hour)
+    response.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate');
     // Set the Content-Type header to indicate a JSON response.
     response.setHeader('Content-Type', 'application/json');
     // Send a successful response (200) with the curated list of stations.
