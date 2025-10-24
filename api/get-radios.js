@@ -7,7 +7,7 @@
 export default async function handler(request, response) {
   // The API endpoint from radio-browser.info for Colombian stations,
   // ordered by click count (most popular first) and limited to 30 results.
-  const apiUrl = 'https://de1.api.radio-browser.info/json/stations/bycountry/colombia?limit=30&order=clickcount&reverse=true';
+  const apiUrl = 'https://at1.api.radio-browser.info/json/stations/bycountry/colombia?limit=30&order=clickcount&reverse=true';
 
   try {
     const radioResponse = await fetch(apiUrl, {
