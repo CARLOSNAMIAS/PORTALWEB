@@ -1540,49 +1540,6 @@ body {
 }
 
 /* ========================================
-   ESPACIOS PUBLICITARIOS
-   ======================================== */
-
-.ad-placeholder {
-    background: #f0f0f0;
-    border: 1px dashed #ccc;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: #999;
-    font-size: 0.9rem;
-    font-weight: 500;
-}
-
-.ad-sidebar {
-    width: 100%;
-    min-height: 250px;
-    /* Altura común para anuncios de sidebar */
-}
-
-
-
-.ad-in-feed {
-
-    /* La altura se ajustará al contenido de la tarjeta de historia */
-
-    min-height: 420px;
-
-    /* Similar a una story-card */
-
-    width: 100%;
-
-    grid-column: span 1;
-
-    /* Asegura que ocupe una columna en el grid */
-
-}
-
-
-
-/* ========================================
 
    SKELETON LOADER STYLES
 

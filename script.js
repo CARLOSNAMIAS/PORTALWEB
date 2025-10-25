@@ -148,10 +148,7 @@ function renderTopStories(stories) {
             </article>
         </a>
     `});
-    if (storiesHtml.length > 2) {
-        const adHtml = `<article class="story-card"><div class="ad-placeholder ad-in-feed"><span>Publicidad</span></div></article>`;
-        storiesHtml.splice(2, 0, adHtml);
-    }
+
     storiesGrid.innerHTML = storiesHtml.join('');
 }
 

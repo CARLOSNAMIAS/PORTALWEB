@@ -12,6 +12,26 @@ const heroStory = {
 const topStories = [
     {
         image: 'img/economia.jpg',
+        alt: 'Turistas en Cartagena, Colombia.',
+        category: 'Economía',
+        title: 'El turismo se consolida como un motor clave para la economía colombiana',
+        summary: 'El sector turístico en Colombia ha experimentado un crecimiento sin precedentes en el último año, posicionándose como uno de los principales motores de la economía nacional.',
+        time: 'Hace 3 horas',
+        reads: '3.8k lecturas',
+        url: 'articles/impacto-turismo-colombia.html'
+    },
+    {
+        image: 'img/deporte.jpg',
+        alt: 'Jugadores celebrando la victoria en la final.',
+        category: 'Deportes',
+        title: 'Una final de infarto define al nuevo campeón del fútbol colombiano',
+        summary: 'En un partido que mantuvo a los aficionados al borde de sus asientos, el equipo local se coronó campeón de la liga colombiana tras una dramática tanda de penales.',
+        time: 'Hace 1 hora',
+        reads: '4.5k lecturas',
+        url: 'articles/final-liga-colombiana.html'
+    },
+    {
+        image: 'img/economia.jpg',
         alt: 'Gráficos y datos de la economía colombiana.',
         category: 'Economía',
         title: 'Economía colombiana registra crecimiento del 3.2% en el trimestre',
